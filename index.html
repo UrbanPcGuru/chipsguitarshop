@@ -1,195 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chip's Guitar Shop</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<title>Hippy Chip's Guitar Shop</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:url('background.webp') center center/cover no-repeat fixed;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:white;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav-wrapper{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:35px;
+    margin-bottom:40px;
+}
+
+.navbar{
+    width:90%;
+    max-width:1400px;
+    background:rgba(0,0,0,0.70);
+    backdrop-filter:blur(8px);
+    border:2px solid rgba(255,255,255,0.15);
+    border-radius:18px;
+    padding:18px 25px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+
+    box-shadow:
+    0 0 25px rgba(0,255,255,0.15),
+    0 0 50px rgba(255,0,255,0.10);
+}
+
+.navbar a{
+    text-decoration:none;
+    color:#ffffff;
+    font-size:1.1rem;
+    font-weight:bold;
+    transition:0.3s;
+    letter-spacing:1px;
+}
+
+.navbar a:hover{
+    color:#00ffee;
+
+    text-shadow:
+    0 0 5px #00ffee,
+    0 0 15px #00ffee,
+    0 0 25px #00ffee;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+
+.main-container{
+    width:95%;
+    max-width:1600px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:50px;
+
+    align-items:center;
+    justify-items:center;
+
+    padding:20px;
+}
+
+/* =========================
+   IMAGE CONTAINERS
+========================= */
+
+.image-box{
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+}
+
+/* Animated color glow */
+
+.image-box::before{
+    content:'';
+    position:absolute;
+    width:180%;
+    height:180%;
+
+    background:
+    conic-gradient(
+        #ff0000,
+        #ff9900,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #ff00ff,
+        #ff0000
+    );
+
+    animation:spin 8s linear infinite;
+
+    filter:blur(60px);
+    opacity:0.6;
+}
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
-      line-height: 1.6;
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* Image styling */
+
+.image-box img{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    max-width:350px;
+
+    border-radius:20px;
+
+    transition:0.4s;
+
+    animation:float 5s ease-in-out infinite;
+}
+
+.image-box img:hover{
+    transform:scale(1.05);
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
     }
 
-    header {
-      background: linear-gradient(to right, #111, #222);
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 3px solid #c59d5f;
+    50%{
+        transform:translateY(-12px);
     }
 
-    header h1 {
-      font-size: 3rem;
-      color: #c59d5f;
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+/* =========================
+   CENTER LOGO
+========================= */
+
+.logo-box img{
+    max-width:350px;
+}
+
+/* =========================
+   SECOND ROW
+========================= */
+
+.second-row{
+    width:100%;
+    margin-top:40px;
+
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+
+    justify-items:center;
+    align-items:center;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    margin-top:80px;
+    margin-bottom:30px;
+
+    text-align:center;
+
+    font-size:1.2rem;
+    font-weight:bold;
+    letter-spacing:2px;
+
+    color:#00ffee;
+
+    text-shadow:
+    0 0 5px #00ffee,
+    0 0 10px #00ffee,
+    0 0 20px #00ffee,
+    0 0 35px #00ffee;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1000px){
+
+    .main-container{
+        grid-template-columns:1fr;
     }
 
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #ddd;
+    .second-row{
+        grid-template-columns:1fr;
+        gap:40px;
     }
 
-    nav {
-      background: #1b1b1b;
-      padding: 15px;
-      text-align: center;
+    .navbar{
+        flex-wrap:wrap;
+        gap:20px;
     }
 
-    nav a {
-      color: #c59d5f;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
+}
 
-    nav a:hover {
-      color: white;
-    }
-
-    .hero {
-      padding: 80px 20px;
-      text-align: center;
-      background-image: url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=1400&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      background: rgba(0,0,0,0.6);
-      display: inline-block;
-      padding: 15px 25px;
-      border-radius: 10px;
-    }
-
-    .content {
-      max-width: 1000px;
-      margin: auto;
-      padding: 50px 20px;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .card {
-      background: #1c1c1c;
-      padding: 25px;
-      border-radius: 12px;
-      border: 1px solid #333;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #c59d5f;
-    }
-
-    .card h3 {
-      color: #c59d5f;
-      margin-bottom: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #000;
-      color: #999;
-      margin-top: 50px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      background: #c59d5f;
-      color: black;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      background: white;
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Chip's Guitar Shop</h1>
-    <p>Custom Guitars • Repairs • Forums • Music Community</p>
-  </header>
+<!-- =========================
+     NAVIGATION BAR
+========================= -->
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Guitar Shop</a>
-    <a href="#">Repairs</a>
-    <a href="#">Forums</a>
-    <a href="#">Contact</a>
-  </nav>
+<div class="nav-wrapper">
 
-  <section class="hero">
-    <h2>Where Tone Meets Passion</h2>
-  </section>
+    <nav class="navbar">
 
-  <section class="content">
+        <a href="we-are-here.html">We Are Here</a>
 
-    <h2>Welcome to Chip's Guitar Shop</h2>
+        <a href="services.html">Guitar Services</a>
 
-    <p style="margin-top:20px;">
-      Explore custom guitars, vintage gear, expert repairs,
-      music discussions, and a growing guitar community.
-    </p>
+        <a href="priors.html">Prior Projects</a>
 
-    <div class="card-grid">
+        <a href="forums.html">Guitar Forums</a>
 
-      <div class="card">
-        <h3>Guitar Shop</h3>
-        <p>
-          Browse guitars, amps, pedals, and unique musical gear.
-        </p>
-      </div>
+    </nav>
 
-      <div class="card">
-        <h3>Guitar Repair</h3>
-        <p>
-          Professional setups, wiring, fretwork, diagnostics,
-          and restoration services.
-        </p>
-      </div>
+</div>
 
-      <div class="card">
-        <h3>Guitar Forums</h3>
-        <p>
-          Join discussions with players, collectors,
-          builders, and musicians.
-        </p>
-      </div>
+<!-- =========================
+     FIRST ROW
+========================= -->
+
+<section class="main-container">
+
+    <!-- COLUMN 1 -->
+
+    <div class="image-box">
+
+        <a href="services.html">
+
+            <img src="guitar-services.webp"
+            alt="Guitar Services">
+
+        </a>
 
     </div>
 
-    <a class="btn" href="#">
-      Explore the Shop
-    </a>
+    <!-- COLUMN 2 -->
 
-  </section>
+    <div class="image-box logo-box">
 
-  <footer>
-    © 2026 Chip's Guitar Shop — All Rights Reserved
-  </footer>
+        <img src="chipslogo.webp"
+        alt="Chip's Guitar Shop Logo">
+
+    </div>
+
+    <!-- COLUMN 3 -->
+
+    <div class="image-box">
+
+        <a href="forums.html">
+
+            <img src="guitar-forums.webp"
+            alt="Guitar Forums">
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     SECOND ROW
+========================= -->
+
+<section class="second-row">
+
+    <!-- COLUMN 1 -->
+
+    <div class="image-box">
+
+        <a href="prior.html">
+
+            <img src="prior-projects.webp"
+            alt="Prior Projects">
+
+        </a>
+
+    </div>
+
+    <!-- COLUMN 2 SPACER -->
+
+    <div></div>
+
+    <!-- COLUMN 3 SPACER -->
+
+    <div></div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    © Copyright
+    www.hippychipsguitars.com
+
+</footer>
 
 </body>
 </html>
