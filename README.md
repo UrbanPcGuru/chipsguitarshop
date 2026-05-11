@@ -1,4 +1,4 @@
 # chipsguitarshop
 Chips Guitar shop 
-![Logo}(images/hippychipslogo.webp)
+![Logo](images/hippychipslogo.webp)
 
