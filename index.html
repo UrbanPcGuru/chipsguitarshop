@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chip's Guitar Shop</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(to right, #111, #222);
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 3px solid #c59d5f;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #c59d5f;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    nav {
+      background: #1b1b1b;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: #c59d5f;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=1400&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      background: rgba(0,0,0,0.6);
+      display: inline-block;
+      padding: 15px 25px;
+      border-radius: 10px;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: auto;
+      padding: 50px 20px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #1c1c1c;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #c59d5f;
+    }
+
+    .card h3 {
+      color: #c59d5f;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #000;
+      color: #999;
+      margin-top: 50px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #c59d5f;
+      color: black;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Chip's Guitar Shop</h1>
+    <p>Custom Guitars • Repairs • Forums • Music Community</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Guitar Shop</a>
+    <a href="#">Repairs</a>
+    <a href="#">Forums</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Where Tone Meets Passion</h2>
+  </section>
+
+  <section class="content">
+
+    <h2>Welcome to Chip's Guitar Shop</h2>
+
+    <p style="margin-top:20px;">
+      Explore custom guitars, vintage gear, expert repairs,
+      music discussions, and a growing guitar community.
+    </p>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>Guitar Shop</h3>
+        <p>
+          Browse guitars, amps, pedals, and unique musical gear.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Guitar Repair</h3>
+        <p>
+          Professional setups, wiring, fretwork, diagnostics,
+          and restoration services.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Guitar Forums</h3>
+        <p>
+          Join discussions with players, collectors,
+          builders, and musicians.
+        </p>
+      </div>
+
+    </div>
+
+    <a class="btn" href="#">
+      Explore the Shop
+    </a>
+
+  </section>
+
+  <footer>
+    © 2026 Chip's Guitar Shop — All Rights Reserved
+  </footer>
+
+</body>
+</html>
