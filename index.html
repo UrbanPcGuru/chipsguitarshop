@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Hippy Chip's Guitar Shop</title>
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 *{
     margin:0;
@@ -16,72 +22,98 @@
 
 body{
     font-family:Arial, Helvetica, sans-serif;
-    background:url('background.webp') center center/cover no-repeat fixed;
+
+    background:
+    url('images/background.webp')
+    center center/cover
+    no-repeat
+    fixed;
+
     min-height:100vh;
+
     overflow-x:hidden;
+
     color:white;
 }
 
 /* =========================
-   NAVIGATION
+   NAV BAR
 ========================= */
 
 .nav-wrapper{
     width:100%;
     display:flex;
     justify-content:center;
+
     margin-top:35px;
-    margin-bottom:40px;
+    margin-bottom:50px;
 }
 
 .navbar{
+
     width:90%;
     max-width:1400px;
+
+    padding:20px;
+
+    border-radius:20px;
+
     background:rgba(0,0,0,0.70);
-    backdrop-filter:blur(8px);
-    border:2px solid rgba(255,255,255,0.15);
-    border-radius:18px;
-    padding:18px 25px;
+
+    backdrop-filter:blur(10px);
 
     display:flex;
     justify-content:center;
     align-items:center;
     gap:40px;
 
+    border:1px solid rgba(255,255,255,0.15);
+
     box-shadow:
-    0 0 25px rgba(0,255,255,0.15),
-    0 0 50px rgba(255,0,255,0.10);
+    0 0 20px rgba(0,255,255,0.20),
+    0 0 40px rgba(255,0,255,0.15);
 }
 
 .navbar a{
+
+    color:white;
+
     text-decoration:none;
-    color:#ffffff;
+
     font-size:1.1rem;
     font-weight:bold;
+
     transition:0.3s;
+
     letter-spacing:1px;
 }
 
 .navbar a:hover{
+
     color:#00ffee;
 
     text-shadow:
     0 0 5px #00ffee,
-    0 0 15px #00ffee,
-    0 0 25px #00ffee;
+    0 0 10px #00ffee,
+    0 0 20px #00ffee;
 }
 
 /* =========================
    MAIN GRID
 ========================= */
 
-.main-container{
+.main-grid{
+
     width:95%;
     max-width:1600px;
+
     margin:auto;
 
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+
+    grid-template-columns:
+    repeat(3, 1fr);
+
     gap:50px;
 
     align-items:center;
@@ -91,10 +123,11 @@ body{
 }
 
 /* =========================
-   IMAGE CONTAINERS
+   IMAGE BOX
 ========================= */
 
 .image-box{
+
     position:relative;
 
     display:flex;
@@ -108,11 +141,14 @@ body{
     overflow:hidden;
 }
 
-/* Animated color glow */
+/* Animated Glow */
 
 .image-box::before{
+
     content:'';
+
     position:absolute;
+
     width:180%;
     height:180%;
 
@@ -131,10 +167,12 @@ body{
     animation:spin 8s linear infinite;
 
     filter:blur(60px);
+
     opacity:0.6;
 }
 
 @keyframes spin{
+
     from{
         transform:rotate(0deg);
     }
@@ -144,10 +182,14 @@ body{
     }
 }
 
-/* Image styling */
+/* =========================
+   FLOATING IMAGES
+========================= */
 
 .image-box img{
+
     position:relative;
+
     z-index:2;
 
     width:100%;
@@ -155,12 +197,13 @@ body{
 
     border-radius:20px;
 
-    transition:0.4s;
-
     animation:float 5s ease-in-out infinite;
+
+    transition:0.4s;
 }
 
 .image-box img:hover{
+
     transform:scale(1.05);
 }
 
@@ -180,10 +223,11 @@ body{
 }
 
 /* =========================
-   CENTER LOGO
+   LOGO
 ========================= */
 
 .logo-box img{
+
     max-width:350px;
 }
 
@@ -192,11 +236,17 @@ body{
 ========================= */
 
 .second-row{
-    width:100%;
+
+    width:95%;
+    max-width:1600px;
+
+    margin:auto;
     margin-top:40px;
 
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+
+    grid-template-columns:
+    1fr 1fr 1fr;
 
     justify-items:center;
     align-items:center;
@@ -207,22 +257,24 @@ body{
 ========================= */
 
 footer{
+
     margin-top:80px;
     margin-bottom:30px;
 
     text-align:center;
 
-    font-size:1.2rem;
+    font-size:1.3rem;
     font-weight:bold;
-    letter-spacing:2px;
 
     color:#00ffee;
+
+    letter-spacing:2px;
 
     text-shadow:
     0 0 5px #00ffee,
     0 0 10px #00ffee,
     0 0 20px #00ffee,
-    0 0 35px #00ffee;
+    0 0 40px #00ffee;
 }
 
 /* =========================
@@ -231,44 +283,51 @@ footer{
 
 @media(max-width:1000px){
 
-    .main-container{
+    .main-grid{
         grid-template-columns:1fr;
     }
 
     .second-row{
         grid-template-columns:1fr;
-        gap:40px;
     }
 
     .navbar{
         flex-wrap:wrap;
         gap:20px;
     }
-
 }
 
 </style>
+
 </head>
 
 <body>
 
 <!-- =========================
-     NAVIGATION BAR
+     NAVIGATION
 ========================= -->
 
 <div class="nav-wrapper">
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <a href="we-are-here.html">We Are Here</a>
+<a href="we-are-here.html">
+We Are Here
+</a>
 
-        <a href="services.html">Guitar Services</a>
+<a href="services.html">
+Guitar Services
+</a>
 
-        <a href="priors.html">Prior Projects</a>
+<a href="priors.html">
+Prior Projects
+</a>
 
-        <a href="forums.html">Guitar Forums</a>
+<a href="forums.html">
+Guitar Forums
+</a>
 
-    </nav>
+</nav>
 
 </div>
 
@@ -276,42 +335,45 @@ footer{
      FIRST ROW
 ========================= -->
 
-<section class="main-container">
+<section class="main-grid">
 
-    <!-- COLUMN 1 -->
+<!-- COLUMN 1 -->
 
-    <div class="image-box">
+<div class="image-box">
 
-        <a href="services.html">
+<a href="services.html">
 
-            <img src="guitar-services.webp"
-            alt="Guitar Services">
+<img
+src="images/guitar-services.webp"
+alt="Guitar Services">
 
-        </a>
+</a>
 
-    </div>
+</div>
 
-    <!-- COLUMN 2 -->
+<!-- COLUMN 2 -->
 
-    <div class="image-box logo-box">
+<div class="image-box logo-box">
 
-        <img src="chipslogo.webp"
-        alt="Chip's Guitar Shop Logo">
+<img
+src="images/chipslogo.webp"
+alt="Chip's Guitar Shop Logo">
 
-    </div>
+</div>
 
-    <!-- COLUMN 3 -->
+<!-- COLUMN 3 -->
 
-    <div class="image-box">
+<div class="image-box">
 
-        <a href="forums.html">
+<a href="forums.html">
 
-            <img src="guitar-forums.webp"
-            alt="Guitar Forums">
+<img
+src="images/guitar-forums.webp"
+alt="Guitar Forums">
 
-        </a>
+</a>
 
-    </div>
+</div>
 
 </section>
 
@@ -321,26 +383,27 @@ footer{
 
 <section class="second-row">
 
-    <!-- COLUMN 1 -->
+<!-- COLUMN 1 -->
 
-    <div class="image-box">
+<div class="image-box">
 
-        <a href="prior.html">
+<a href="prior.html">
 
-            <img src="prior-projects.webp"
-            alt="Prior Projects">
+<img
+src="images/prior-projects.webp"
+alt="Prior Projects">
 
-        </a>
+</a>
 
-    </div>
+</div>
 
-    <!-- COLUMN 2 SPACER -->
+<!-- COLUMN 2 EMPTY -->
 
-    <div></div>
+<div></div>
 
-    <!-- COLUMN 3 SPACER -->
+<!-- COLUMN 3 EMPTY -->
 
-    <div></div>
+<div></div>
 
 </section>
 
@@ -350,8 +413,8 @@ footer{
 
 <footer>
 
-    © Copyright
-    www.hippychipsguitars.com
+© Copyright
+www.hippychipsguitars.com
 
 </footer>
 
