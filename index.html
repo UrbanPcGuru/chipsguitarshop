@@ -20,6 +20,8 @@
             font-family: Arial, Helvetica, sans-serif;
             background: url('./images/background.webp') center center/cover no-repeat fixed;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
             color: white;
         }
@@ -32,7 +34,7 @@
             display: flex;
             justify-content: center;
             margin-top: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .navbar {
@@ -43,8 +45,8 @@
             display: flex;
             gap: 40px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            z-index: 100;
             position: relative;
+            z-index: 100;
         }
 
         .navbar a {
@@ -62,7 +64,7 @@
             max-width: 1400px;
             margin: auto;
             display: grid;
-            /* 300px side columns for perfect vertical pick alignment */
+            /* Side columns fixed at 300px for vertical alignment */
             grid-template-columns: 300px 1fr 300px; 
             gap: 20px;
             align-items: center;
@@ -70,7 +72,7 @@
         }
 
         .second-row {
-            margin-top: -80px; /* Pulls the lower picks up */
+            margin-top: -100px; /* Pulls picks up towards the logo */
         }
 
         /* =========================
@@ -109,7 +111,7 @@
            LOGO ADJUSTMENT
         ========================= */
         .logo-container {
-            margin-top: -60px; /* Lowered from previous to clear the nav bar */
+            margin-top: 10px; /* Brought down to clear the Nav Bar */
             z-index: 2;
         }
 
@@ -135,6 +137,18 @@
         @keyframes floating {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: auto; /* Pushes footer to the bottom of the screen */
+            color: #00ffee;
+            text-shadow: 0 0 5px #00ffee;
+            font-weight: bold;
         }
 
         /* =========================
@@ -188,7 +202,7 @@
             </a>
         </div>
 
-        <div><!-- Empty Middle Column for Logo Space --></div>
+        <div><!-- Spacer column under the logo --></div>
 
         <div class="image-box">
             <a href="priors.html">
@@ -197,7 +211,7 @@
         </div>
     </section>
 
-    <footer style="text-align: center; margin-top: 20px; padding-bottom: 20px; color: #00ffee; text-shadow: 0 0 5px #00ffee;">
+    <footer>
         © Copyright www.hippychipsguitars.com
     </footer>
 
