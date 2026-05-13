@@ -8,7 +8,7 @@
 
     <style>
         /* =========================
-           GLOBAL & BACKGROUND
+           GLOBAL SETUP
         ========================= */
         * {
             margin: 0;
@@ -27,26 +27,24 @@
         }
 
         /* =========================
-           NAV BAR
+           NAVIGATION
         ========================= */
         .nav-wrapper {
             width: 100%;
             display: flex;
             justify-content: center;
             margin-top: 25px;
-            margin-bottom: 20px;
+            z-index: 100;
         }
 
         .navbar {
             padding: 15px 40px;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
             display: flex;
             gap: 40px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            position: relative;
-            z-index: 100;
         }
 
         .navbar a {
@@ -57,40 +55,60 @@
         }
 
         /* =========================
-           GRID ALIGNMENT
+           FIXED COLUMN GRID 
+           Forces perfect vertical alignment
         ========================= */
-        .main-grid, .second-row {
-            width: 90%;
-            max-width: 1400px;
-            margin: auto;
-            display: grid;
-            /* Side columns fixed at 300px for vertical alignment */
-            grid-template-columns: 300px 1fr 300px; 
-            gap: 20px;
+        .main-container {
+            flex: 1;
+            display: flex;
             align-items: center;
-            justify-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
         }
 
-        .second-row {
-            margin-top: -100px; /* Pulls picks up towards the logo */
+        .content-grid {
+            display: grid;
+            /* Side columns set to a fixed 280px to lock vertical alignment */
+            grid-template-columns: 280px 650px 280px;
+            align-items: center;
+            justify-items: center;
+            column-gap: 20px;
+            row-gap: 30px;
         }
 
         /* =========================
-           IMAGE BOX & GLOW
+           LOGO ADJUSTMENT
+        ========================= */
+        .logo-container {
+            grid-row: span 2; 
+            margin-top: 85px; /* Centers logo in the circular wall space */
+        }
+
+        .logo-container img {
+            width: 100%;
+            max-width: 630px; /* Slightly larger for impact */
+            height: auto;
+            display: block;
+        }
+
+        /* =========================
+           PICK IMAGES & GLOWS
         ========================= */
         .image-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 280px;
+            min-height: 250px;
+            width: 100%; 
         }
 
         .image-box::before {
             content: '';
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(25px);
@@ -99,67 +117,51 @@
         }
 
         @keyframes cycleSingleColor {
-            0%, 100% { background: rgba(255, 0, 0, 0.8); box-shadow: 0 0 30px 5px red; }
-            16% { background: rgba(255, 255, 0, 0.8); box-shadow: 0 0 30px 5px yellow; }
-            33% { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 30px 5px green; }
-            50% { background: rgba(0, 255, 255, 0.8); box-shadow: 0 0 30px 5px cyan; }
-            66% { background: rgba(0, 0, 255, 0.8); box-shadow: 0 0 30px 5px blue; }
-            83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 30px 5px magenta; }
+            0%, 100% { background: red; box-shadow: 0 0 30px red; }
+            20% { background: yellow; box-shadow: 0 0 30px yellow; }
+            40% { background: green; box-shadow: 0 0 30px green; }
+            60% { background: cyan; box-shadow: 0 0 30px cyan; }
+            80% { background: magenta; box-shadow: 0 0 30px magenta; }
         }
 
-        /* =========================
-           LOGO ADJUSTMENT
-        ========================= */
-        .logo-container {
-            margin-top: 10px; /* Brought down to clear the Nav Bar */
-            z-index: 2;
-        }
-
-        .logo-container img {
-            width: 550px !important; 
-            height: auto;
-            display: block;
-        }
-
-        /* =========================
-           PICK IMAGES
-        ========================= */
         .image-box img {
-            display: block;
             position: relative;
             z-index: 10;
-            width: 240px; 
+            width: 230px; 
             height: auto;
-            border-radius: 20px;
+            border-radius: 15px;
             animation: floating 6s ease-in-out infinite;
         }
 
         @keyframes floating {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-12px); }
         }
 
         /* =========================
-           FOOTER
+           FOOTER (PINNED TO BOTTOM)
         ========================= */
         footer {
             text-align: center;
             padding: 40px 0;
-            margin-top: auto; /* Pushes footer to the bottom of the screen */
             color: #00ffee;
-            text-shadow: 0 0 5px #00ffee;
+            text-shadow: 0 0 10px rgba(0, 255, 238, 0.8);
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
         /* =========================
-           MOBILE
+           MOBILE OVERRIDE
         ========================= */
-        @media(max-width: 1000px) {
-            .main-grid, .second-row { 
-                grid-template-columns: 1fr; 
-                margin-top: 0;
+        @media(max-width: 1250px) {
+            .content-grid {
+                grid-template-columns: 1fr;
             }
-            .logo-container { margin-top: 0; }
+            .logo-container {
+                grid-row: auto;
+                margin-top: 20px;
+                order: -1;
+            }
         }
     </style>
 </head>
@@ -175,41 +177,36 @@
         </nav>
     </div>
 
-    <!-- ROW 1 -->
-    <section class="main-grid">
-        <div class="image-box">
-            <a href="index.html">
-                <img src="./images/guitarshop.webp" alt="Guitar Shop">
-            </a>
-        </div>
+    <div class="main-container">
+        <div class="content-grid">
+            
+            <!-- LEFT TOP PICK -->
+            <div class="image-box">
+                <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
+            </div>
 
-        <div class="image-box logo-container">
-            <img src="./images/hippychipslogo.webp" alt="Logo">
-        </div>
+            <!-- CENTER LOGO -->
+            <div class="logo-container">
+                <img src="./images/hippychipslogo.webp" alt="Logo">
+            </div>
 
-        <div class="image-box">
-            <a href="forums.html">
-                <img src="./images/guitarforums.webp" alt="Guitar Forums">
-            </a>
-        </div>
-    </section>
+            <!-- RIGHT TOP PICK -->
+            <div class="image-box">
+                <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
+            </div>
 
-    <!-- ROW 2 -->
-    <section class="second-row">
-        <div class="image-box">
-            <a href="services.html">
-                <img src="./images/guitar-repair.webp" alt="Guitar Repair">
-            </a>
-        </div>
+            <!-- LEFT BOTTOM PICK -->
+            <div class="image-box">
+                <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
+            </div>
 
-        <div><!-- Spacer column under the logo --></div>
+            <!-- RIGHT BOTTOM PICK (Locked under Forums) -->
+            <div class="image-box">
+                <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
+            </div>
 
-        <div class="image-box">
-            <a href="priors.html">
-                <img src="./images/priorprojects.webp" alt="Prior Projects">
-            </a>
         </div>
-    </section>
+    </div>
 
     <footer>
         © Copyright www.hippychipsguitars.com
