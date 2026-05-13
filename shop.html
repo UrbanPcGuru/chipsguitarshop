@@ -16,8 +16,8 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* Position pushed to 55% to clear the top text on the background image */
-            background: #000 url('images/shopbackground.webp') no-repeat center 55% fixed;
+            /* background-position changed to 70% to lower the image further below the nav bar */
+            background: #000 url('images/shopbackground.webp') no-repeat center 70% fixed;
             background-size: cover;
             min-height: 100vh;
             color: white;
@@ -63,7 +63,6 @@
             z-index: 1000;
         }
 
-        /* Logo set to 300px per request */
         .logo-large img {
             width: 300px; 
             height: auto;
@@ -132,7 +131,7 @@
             position: relative;
             width: 1040px; 
             height: 600px;
-            margin-top: -60px; /* Adjusted to fit the 300px logo */
+            margin-top: -60px; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -145,7 +144,7 @@
             height: 380px;
             z-index: 50;
             overflow: hidden;
-            background: #000; /* Set to solid black to remove the large pick image */
+            background: #000;
             border-radius: 12px;
         }
 
@@ -201,7 +200,8 @@
         ========================= */
         footer {
             margin-top: auto;
-            padding: 20px;
+            /* bottom padding increased to 40px to raise the text up one row */
+            padding: 20px 20px 40px 20px;
             color: #000000; 
             font-size: 0.75rem; 
             font-weight: bold;
@@ -239,7 +239,6 @@
     </header>
 
     <main class="catalog-container">
-        <!-- Main window now empty/black -->
         <div class="main-view-window"></div>
 
         <div class="thumbnail-window">
