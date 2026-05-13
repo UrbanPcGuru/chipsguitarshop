@@ -52,6 +52,11 @@
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #00aaff; 
         }
 
         /* =========================
@@ -66,17 +71,18 @@
             width: 100%;
             max-width: 1600px;
             margin: 0 auto;
-            padding: 0 50px;
+            /* Added padding to push the layout down from the nav */
+            padding: 40px 50px 0 50px; 
         }
 
         /* CENTER LOGO POSITIONING 
-           Shifted higher to fit the circular wall feature exactly */
+           Slightly lowered to prevent Nav bar overlap */
         .logo-column {
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Lifted from -220px to -280px for perfect placement */
-            margin-top: -235px; 
+            /* Adjusted from -235px to -200px to sit clear of the Nav */
+            margin-top: -200px; 
             z-index: 500;
         }
 
@@ -95,7 +101,6 @@
             width: 100%;
             height: auto; 
             display: block;
-            /* Drop-shadow is used here to ensure the glow works with the logo transparency */
             animation: cycleLogoGlow 10s linear infinite;
         }
 
@@ -128,7 +133,6 @@
             transform: scale(1.1);
         }
 
-        /* PICK GLOWS (Restored Auras) */
         .image-box::after {
             content: '';
             position: absolute;
@@ -182,10 +186,10 @@
 
     <div class="nav-wrapper">
         <nav class="navbar">
-            <a href="we-are-here.html">Who We Are</a>
+            <a href="who-we-are.html">Who We Are</a>
             <a href="services.html">Guitar Services</a>
             <a href="priors.html">Prior Projects</a>
-            <a href="forums.html">Guitar Forums</a>
+            <a href="guitarforums.html">Guitar Forums</a>
         </nav>
     </div>
 
@@ -193,7 +197,7 @@
         
         <div class="picks-column">
             <div class="image-box pick-1">
-                <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
+                <a href="shop.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
             <div class="image-box pick-2">
                 <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
@@ -208,7 +212,7 @@
 
         <div class="picks-column">
             <div class="image-box pick-3">
-                <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
+                <a href="guitarforums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
             <div class="image-box pick-4">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
