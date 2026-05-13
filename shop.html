@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hippy Chip's Guitar Shop - Component Catalog</title>
+    <title>Hippy Chip's Guitar Shop - Inventory</title>
     <style>
         /* =========================
-           GLOBAL SETUP & BACKGROUND
+           GLOBAL & BACKGROUND
         ========================= */
         * {
             margin: 0;
@@ -15,14 +15,14 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            /* QUOTES ARE MANDATORY HERE FOR THE SPACE IN FILENAME */
-            background: #000 url('./images/shop background.webp') center center/cover no-repeat fixed;
+            font-family: Arial, sans-serif;
+            /* Updated to match your exact filename in image_2ad93c.jpg */
+            background: #000 url('./images/shopbackground.webp') center center/cover no-repeat fixed;
             min-height: 100vh;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: white;
             overflow-x: hidden;
         }
 
@@ -35,7 +35,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             z-index: 1000;
         }
@@ -55,14 +55,14 @@
         .category-row {
             display: flex;
             gap: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         .cat-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
             cursor: pointer;
         }
 
@@ -97,33 +97,19 @@
         }
 
         /* =========================
-           DYNAMIC SLIDER WRAPPER
+           SLIDER LAYERS
         ========================= */
         .catalog-container {
             position: relative;
             width: 1040px; 
             height: 600px;
-            margin-top: 40px;
+            margin-top: 50px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
-        /* THE PHYSICAL FRAME OVERLAY (slider.webp) */
-        /* Must have transparent centers to work */
-        .catalog-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('./images/slider.webp') center no-repeat;
-            background-size: contain;
-            z-index: 100; 
-            pointer-events: none;
-        }
-
-        /* MAIN PRODUCT DISPLAY (Behind the top window) */
+        /* MAIN PRODUCT WINDOW (Behind) */
         .main-view-window {
             position: absolute;
             top: 55px;   
@@ -135,13 +121,7 @@
             border-radius: 12px;
         }
 
-        .main-product-placeholder {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* LOWER GALLERY (Behind the bottom thumbnails) */
+        /* LOWER GALLERY WINDOW (Behind) */
         .thumbnail-window {
             position: absolute;
             bottom: 38px; 
@@ -160,33 +140,43 @@
             background: rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(0, 255, 238, 0.2);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 0.75rem;
             color: #00ffee;
-            text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
-        /* NAV OVERLAYS */
+        /* THE FRAME (On Top) */
+        .catalog-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Updated to slider.webp from your file list */
+            background: url('./images/slider.webp') center no-repeat;
+            background-size: contain;
+            z-index: 100; 
+            pointer-events: none;
+        }
+
+        /* NAV TARGETS */
         .nav-hitbox {
             position: absolute;
             top: 235px;
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             z-index: 150; 
             cursor: pointer;
-            border-radius: 50%;
         }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
 
         footer {
             margin-top: auto;
             padding: 30px;
             color: #00ffee;
             font-weight: bold;
-            text-shadow: 0 0 10px rgba(0, 255, 238, 0.5);
         }
     </style>
 </head>
@@ -195,58 +185,43 @@
     <header>
         <div class="logo-small">
             <a href="index.html">
-                <img src="./images/hippychipslogo.webp" alt="Hippy Chips Logo">
+                <!-- Updated to match hippychipslogo.webp in your explorer -->
+                <img src="./images/hippychipslogo.webp" alt="Logo">
             </a>
         </div>
 
         <div class="search-area">
             <div class="category-row">
-                <label class="cat-item">
-                    <input type="radio" name="shop-cat" value="guitars" checked> Guitars
-                </label>
-                <label class="cat-item">
-                    <input type="radio" name="shop-cat" value="parts"> Parts
-                </label>
-                <label class="cat-item">
-                    <input type="radio" name="shop-cat" value="merch"> Merch
-                </label>
+                <label class="cat-item"><input type="radio" name="cat" checked> Guitars</label>
+                <label class="cat-item"><input type="radio" name="cat"> Parts</label>
+                <label class="cat-item"><input type="radio" name="cat"> Merch</label>
             </div>
-
             <div class="search-bar">
-                <input type="text" placeholder="Search the shop...">
-                <button type="submit">GO</button>
+                <input type="text" placeholder="Search components...">
+                <button type="button">GO</button>
             </div>
         </div>
     </header>
 
     <main class="catalog-container">
-        <!-- Images Behind -->
+        <!-- Center Product -->
         <div class="main-view-window">
-            <!-- Placeholder for Main Database Image -->
-            <img src="./images/guitar-1.webp" class="main-product-placeholder" alt="Main View">
+            <img src="./images/guitar-repair.webp" style="width:100%; height:100%; object-fit:cover;">
         </div>
 
+        <!-- Lower Data Placeholders -->
         <div class="thumbnail-window">
-            <div class="thumb-placeholder">
-                <span>Part A</span>
-                <small>In Stock</small>
-            </div>
-            <div class="thumb-placeholder">
-                <span>Part B</span>
-                <small>Custom Built</small>
-            </div>
-            <div class="thumb-placeholder">
-                <span>Part C</span>
-                <small>Aged Copper</small>
-            </div>
+            <div class="thumb-placeholder">Part 1</div>
+            <div class="thumb-placeholder">Part 2</div>
+            <div class="thumb-placeholder">Part 3</div>
         </div>
 
-        <!-- The Frame on Top -->
+        <!-- Frame Overlay -->
         <div class="catalog-frame"></div>
 
-        <!-- Clicking the dials -->
-        <div class="nav-hitbox prev-btn" title="Previous"></div>
-        <div class="nav-hitbox next-btn" title="Next"></div>
+        <!-- Nav Buttons -->
+        <div class="nav-hitbox prev-btn"></div>
+        <div class="nav-hitbox next-btn"></div>
     </main>
 
     <footer>
