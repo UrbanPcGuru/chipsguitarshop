@@ -65,14 +65,13 @@
         }
 
         /* =========================
-           GRID LAYOUTS (FORCED ALIGNMENT)
+           GRID LAYOUTS
         ========================= */
         .main-grid, .second-row {
             width: 95%;
-            max-width: 1800px; /* Increased to accommodate larger logo */
+            max-width: 1800px;
             margin: auto;
             display: grid;
-            /* Column 2 is set to auto to flex with the logo size */
             grid-template-columns: 1fr auto 1fr; 
             gap: 50px;
             align-items: center;
@@ -81,7 +80,7 @@
         }
 
         /* =========================
-           IMAGE BOX & INDEPENDENT COLOR GLOW
+           IMAGE BOX & INDEPENDENT SINGLE COLOR GLOW
         ========================= */
         .image-box {
             position: relative;
@@ -94,74 +93,51 @@
         .image-box::before {
             content: '';
             position: absolute;
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             z-index: 1; 
-            box-shadow: 
-                -40px -40px 70px 15px rgba(255, 0, 0, 0.6),
-                40px -40px 70px 15px rgba(0, 255, 0, 0.6),
-                0px 40px 70px 15px rgba(0, 0, 255, 0.6);
-            filter: blur(30px);
-            opacity: 0.8;
-            animation: shiftColors 12s ease-in-out infinite;
+            filter: blur(25px);
+            opacity: 0.7;
+            /* Tight glow that cycles through colors */
+            animation: cycleSingleColor 12s linear infinite;
             transition: all 0.5s ease-in-out;
         }
 
+        /* Hover State: Lock to bright green */
         .image-box:hover::before {
-            box-shadow: 0 0 100px 40px rgba(0, 255, 0, 1);
-            background: rgba(0, 255, 0, 0.4);
-            filter: blur(50px);
+            background: rgba(0, 255, 0, 0.8);
+            box-shadow: 0 0 50px 20px rgba(0, 255, 0, 1);
             animation: none;
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             opacity: 1;
         }
 
-        /* LOGO SPECIFIC SCALING */
+        /* Animation: Each pick cycles through 6 colors separately */
+        @keyframes cycleSingleColor {
+            0%, 100% { background: rgba(255, 0, 0, 0.8); box-shadow: 0 0 40px 10px rgba(255, 0, 0, 0.6); }
+            16% { background: rgba(255, 255, 0, 0.8); box-shadow: 0 0 40px 10px rgba(255, 255, 0, 0.6); }
+            33% { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 40px 10px rgba(0, 255, 0, 0.6); }
+            50% { background: rgba(0, 255, 255, 0.8); box-shadow: 0 0 40px 10px rgba(0, 255, 255, 0.6); }
+            66% { background: rgba(0, 0, 255, 0.8); box-shadow: 0 0 40px 10px rgba(0, 0, 255, 0.6); }
+            83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 40px 10px rgba(255, 0, 255, 0.6); }
+        }
+
+        /* Offset the timing so they aren't the same color at the same time */
+        .pick-1::before { animation-delay: 0s; }
+        .pick-2::before { animation-delay: -3s; }
+        .pick-3::before { animation-delay: -6s; }
+        .pick-4::before { animation-delay: -9s; }
+
+        /* LOGO SPECIFIC */
         .logo-container img {
             max-width: 900px !important; 
         }
-
         .logo-container::before {
-            width: 450px; 
-            height: 450px;
-        }
-
-        .logo-container:hover::before {
-            width: 550px;
-            height: 550px;
-        }
-
-        @keyframes shiftColors {
-            0% {
-                box-shadow: 
-                    -40px -40px 70px 15px rgba(255, 0, 0, 0.7),
-                    40px -40px 70px 15px rgba(0, 255, 0, 0.7),
-                    0px 40px 70px 15px rgba(0, 0, 255, 0.7);
-                transform: rotate(0deg) scale(1);
-            }
-            33% {
-                box-shadow: 
-                    40px 20px 80px 20px rgba(255, 255, 0, 0.7),
-                    -40px 40px 80px 20px rgba(255, 0, 255, 0.7),
-                    0px -60px 80px 20px rgba(0, 255, 255, 0.7);
-                transform: rotate(120deg) scale(1.1);
-            }
-            66% {
-                box-shadow: 
-                    0px -50px 90px 25px rgba(0, 255, 0, 0.7),
-                    60px 60px 90px 25px rgba(255, 0, 0, 0.7),
-                    -60px 60px 90px 25px rgba(0, 0, 255, 0.7);
-                transform: rotate(240deg) scale(0.9);
-            }
-            100% {
-                box-shadow: 
-                    -40px -40px 70px 15px rgba(255, 0, 0, 0.7),
-                    40px -40px 70px 15px rgba(0, 255, 0, 0.7),
-                    0px 40px 70px 15px rgba(0, 0, 255, 0.7);
-                transform: rotate(360deg) scale(1);
-            }
+            width: 400px; 
+            height: 400px;
+            animation-delay: -4s; /* Different timing for logo glow */
         }
 
         /* =========================
@@ -231,40 +207,35 @@
 
     <!-- MAIN GRID (ROW 1) -->
     <section class="main-grid">
-        <!-- Pick Top Left -->
-        <div class="image-box">
+        <div class="image-box pick-1">
             <a href="index.html">
                 <img src="images/guitarshop.webp" alt="Guitar Shop">
             </a>
         </div>
 
-        <!-- CENTER LOGO (COL 2) -->
         <div class="image-box logo-container">
             <img src="images/hippychipslogo.webp" alt="Hippy Chip's Guitar Shop Logo">
         </div>
 
-        <!-- Pick Top Right -->
-        <div class="image-box">
+        <div class="image-box pick-2">
             <a href="forums.html">
                 <img src="images/guitarforums.webp" alt="Guitar Forums">
             </a>
         </div>
     </section>
 
-    <!-- SECOND ROW (COLUMNS SYNCED TO TOP ROW) -->
+    <!-- SECOND ROW -->
     <section class="second-row">
-        <!-- Pick Bottom Left -->
-        <div class="image-box">
+        <div class="image-box pick-3">
             <a href="services.html">
                 <img src="images/guitar-repair.webp" alt="Guitar Repair Services">
             </a>
         </div>
 
-        <!-- SPACER (COL 2) - Matches the width of the Logo container -->
+        <!-- SPACER - Correctly sized for the logo column -->
         <div style="width: 900px; display: block;"></div>
 
-        <!-- Pick Bottom Right (Aligned with Top Right) -->
-        <div class="image-box">
+        <div class="image-box pick-4">
             <a href="priors.html">
                 <img src="images/priorprojects.webp" alt="Prior Projects">
             </a>
