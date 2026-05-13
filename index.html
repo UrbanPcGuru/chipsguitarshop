@@ -66,12 +66,13 @@
             padding: 20px 50px;
         }
 
-        /* ROW 1: LOGO POSITIONING */
+        /* ROW 1: LOGO POSITIONING 
+           Adjusted to sit within the background frame seen in image_2d8bd3.jpg */
         .logo-row {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top: -90px; 
+            margin-top: -60px; 
             margin-bottom: 40px;
         }
 
@@ -82,18 +83,18 @@
             align-items: center;
         }
 
-        /* TIGHTER GLOW: Reduced blur and shadow spread */
+        /* ULTRA-TIGHT GLOW: 4px past 630px border 
+           Reduces the massive spread seen in image_2d8bd3.jpg */
         .logo-container::before {
             content: '';
             position: absolute;
-            width: 638px; /* 630px + 4px padding on each side */
+            width: 638px; /* 630px + 4px per side */
             height: 638px; 
             border-radius: 50%;
             z-index: 1;
-            filter: blur(4px); /* Sharper, lower glow */
-            opacity: 0.5; /* Slightly more subtle transparency */
+            filter: blur(2px); /* Very sharp blur for tight glow */
+            opacity: 0.4; /* Subtle glow intensity */
             animation: cycleLogoGlow 15s linear infinite;
-            animation-delay: -5s; 
         }
 
         .logo-container img {
@@ -105,19 +106,19 @@
             display: block;
         }
 
-        /* TIGHT GLOW ANIMATION */
+        /* SHARP COLOR CYCLE */
         @keyframes cycleLogoGlow {
-            0%   { background: red; box-shadow: 0 0 10px red; }
-            16%  { background: yellow; box-shadow: 0 0 10px yellow; }
-            33%  { background: green; box-shadow: 0 0 10px green; }
-            50%  { background: cyan; box-shadow: 0 0 10px cyan; }
-            66%  { background: blue; box-shadow: 0 0 10px blue; }
-            83%  { background: magenta; box-shadow: 0 0 10px magenta; }
-            100% { background: red; box-shadow: 0 0 10px red; }
+            0%   { background: red; box-shadow: 0 0 4px red; }
+            16%  { background: yellow; box-shadow: 0 0 4px yellow; }
+            33%  { background: green; box-shadow: 0 0 4px green; }
+            50%  { background: cyan; box-shadow: 0 0 4px cyan; }
+            66%  { background: blue; box-shadow: 0 0 4px blue; }
+            83%  { background: magenta; box-shadow: 0 0 4px magenta; }
+            100% { background: red; box-shadow: 0 0 4px red; }
         }
 
         /* =========================
-           GRID & PICKS
+           ROWS 2 & 3: 3-COLUMN PICKS
         ========================= */
         .picks-grid {
             display: grid;
