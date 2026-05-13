@@ -56,7 +56,7 @@
 
         /* =========================
            FIXED COLUMN GRID 
-           Forces perfect vertical alignment
+           Locks vertical alignment for picks
         ========================= */
         .main-container {
             flex: 1;
@@ -69,7 +69,7 @@
 
         .content-grid {
             display: grid;
-            /* Side columns set to a fixed 280px to lock vertical alignment */
+            /* Side columns set to a fixed 280px to prevent drifting */
             grid-template-columns: 280px 650px 280px;
             align-items: center;
             justify-items: center;
@@ -78,22 +78,23 @@
         }
 
         /* =========================
-           LOGO ADJUSTMENT
+           LOGO POSITIONING
         ========================= */
         .logo-container {
             grid-row: span 2; 
-            margin-top: 85px; /* Centers logo in the circular wall space */
+            margin-top: 85px; /* Aligns with the circular wall feature */
         }
 
         .logo-container img {
             width: 100%;
-            max-width: 630px; /* Slightly larger for impact */
+            max-width: 630px; 
             height: auto;
             display: block;
         }
 
         /* =========================
-           PICK IMAGES & GLOWS
+           UNIQUE GLOW COLOR OFFSET
+           Ensures no two picks share a color
         ========================= */
         .image-box {
             position: relative;
@@ -113,15 +114,23 @@
             z-index: 1; 
             filter: blur(25px);
             opacity: 0.6;
-            animation: cycleSingleColor 12s linear infinite;
+            animation: cycleColors 12s linear infinite;
         }
 
-        @keyframes cycleSingleColor {
-            0%, 100% { background: red; box-shadow: 0 0 30px red; }
-            20% { background: yellow; box-shadow: 0 0 30px yellow; }
-            40% { background: green; box-shadow: 0 0 30px green; }
-            60% { background: cyan; box-shadow: 0 0 30px cyan; }
-            80% { background: magenta; box-shadow: 0 0 30px magenta; }
+        /* 12s total / 4 picks = 3s offset for zero color overlap */
+        .pick-1::before { animation-delay: 0s; }
+        .pick-2::before { animation-delay: -3s; }
+        .pick-3::before { animation-delay: -6s; }
+        .pick-4::before { animation-delay: -9s; }
+
+        @keyframes cycleColors {
+            0%   { background: red; box-shadow: 0 0 30px red; }
+            16%  { background: yellow; box-shadow: 0 0 30px yellow; }
+            33%  { background: green; box-shadow: 0 0 30px green; }
+            50%  { background: cyan; box-shadow: 0 0 30px cyan; }
+            66%  { background: blue; box-shadow: 0 0 30px blue; }
+            83%  { background: magenta; box-shadow: 0 0 30px magenta; }
+            100% { background: red; box-shadow: 0 0 30px red; }
         }
 
         .image-box img {
@@ -139,7 +148,7 @@
         }
 
         /* =========================
-           FOOTER (PINNED TO BOTTOM)
+           FOOTER (CENTERED BOTTOM)
         ========================= */
         footer {
             text-align: center;
@@ -151,7 +160,7 @@
         }
 
         /* =========================
-           MOBILE OVERRIDE
+           MOBILE RESPONSIVENESS
         ========================= */
         @media(max-width: 1250px) {
             .content-grid {
@@ -180,8 +189,8 @@
     <div class="main-container">
         <div class="content-grid">
             
-            <!-- LEFT TOP PICK -->
-            <div class="image-box">
+            <!-- LEFT TOP -->
+            <div class="image-box pick-1">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
 
@@ -190,18 +199,18 @@
                 <img src="./images/hippychipslogo.webp" alt="Logo">
             </div>
 
-            <!-- RIGHT TOP PICK -->
-            <div class="image-box">
+            <!-- RIGHT TOP -->
+            <div class="image-box pick-2">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
 
-            <!-- LEFT BOTTOM PICK -->
-            <div class="image-box">
+            <!-- LEFT BOTTOM -->
+            <div class="image-box pick-3">
                 <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
             </div>
 
-            <!-- RIGHT BOTTOM PICK (Locked under Forums) -->
-            <div class="image-box">
+            <!-- RIGHT BOTTOM (Locked and Vertically Aligned) -->
+            <div class="image-box pick-4">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
             </div>
 
