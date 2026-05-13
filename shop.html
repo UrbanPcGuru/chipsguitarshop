@@ -116,34 +116,34 @@
         }
 
         .logo-large img {
-            width: 220px; 
+            width: 200px; 
             height: auto;
         }
 
         /* =========================
-           SCALED SLIDER
+           SLIDER & WINDOW 
         ========================= */
         .catalog-container {
             position: relative;
             flex-grow: 1; 
-            width: 700px; 
+            width: 680px; /* Matched to smaller slider scale */
             height: 380px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 85px; 
+            margin-top: 75px; 
         }
 
-        /* The black box behind the slider frame */
+        /* Fixed the black window size and position */
         .main-view-window {
             position: absolute;
-            top: 32px;   /* Adjusted to align precisely behind the frame */
-            width: 585px; /* Shrunk to fit inside the smaller slider image */
-            height: 240px; /* Shrunk to fit inside the smaller slider image */
+            top: 48px;   /* Pushed down to clear the top decorative frame */
+            width: 480px; /* Narrowed to fit inside the "brass" frame */
+            height: 215px; /* Shortened to fit height-wise */
             z-index: 50;
             overflow: hidden;
             background: #000;
-            border-radius: 8px;
+            border-radius: 5px;
         }
 
         .catalog-frame {
@@ -159,18 +159,21 @@
         }
 
         /* =========================
-           FOOTER WITH GLASS EFFECT
+           STYLED FOOTER
         ========================= */
         footer {
             width: 100%;
             text-align: center;
-            padding: 15px 0 25px 0; 
-            /* White 45% transparent container */
-            background: rgba(255, 255, 255, 0.45); 
-            backdrop-filter: blur(4px); /* Optional: adds a slight blur for readability */
-            color: #000000; 
+            padding: 12px 0;
+            /* White 45% Transparent Background */
+            background: rgba(255, 255, 255, 0.45);
+            /* Soft glass effect */
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #000; 
             font-size: 0.85rem; 
             font-weight: bold;
+            letter-spacing: 1px;
             flex-shrink: 0;
             z-index: 1000;
         }
@@ -209,13 +212,12 @@
     </header>
 
     <main class="catalog-container">
-        <!-- This is the black background window that needs to fit the slider -->
         <div class="main-view-window"></div>
         <div class="catalog-frame"></div>
     </main>
 
     <footer>
-        © Copyright www.hippychipsguitars.com
+        &copy; Copyright www.hippychipsguitars.com
     </footer>
 
 </body>
