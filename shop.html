@@ -16,8 +16,8 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* background-position pushed down further to 40% to prevent top cutoff */
-            background: #000 url('images/shopbackground.webp') no-repeat center 40% fixed;
+            /* Position pushed to 55% to clear the top text on the background image */
+            background: #000 url('images/shopbackground.webp') no-repeat center 55% fixed;
             background-size: cover;
             min-height: 100vh;
             color: white;
@@ -28,7 +28,7 @@
         }
 
         /* =========================
-           PERMANENT NAVBAR (from index)
+           PERMANENT NAVBAR
         ========================= */
         nav {
             width: 100%;
@@ -58,18 +58,17 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start; /* Aligns logo and search to the top of the header area */
+            align-items: flex-start;
             padding: 20px 40px;
             z-index: 1000;
         }
 
-        /* Logo made significantly bigger (300px) */
+        /* Logo set to 300px per request */
         .logo-large img {
             width: 300px; 
             height: auto;
         }
 
-        /* Search area placed below the nav bar level */
         .search-area {
             display: flex;
             flex-direction: column;
@@ -80,7 +79,7 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 10px; /* Slight gap from the nav bar */
+            margin-top: 10px;
         }
 
         .category-row {
@@ -133,7 +132,7 @@
             position: relative;
             width: 1040px; 
             height: 600px;
-            margin-top: -40px; /* Pulls the catalog up slightly to accommodate bigger logo/search */
+            margin-top: -60px; /* Adjusted to fit the 300px logo */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -146,7 +145,7 @@
             height: 380px;
             z-index: 50;
             overflow: hidden;
-            background: #000;
+            background: #000; /* Set to solid black to remove the large pick image */
             border-radius: 12px;
         }
 
@@ -211,7 +210,6 @@
 </head>
 <body>
 
-    <!-- Permanent NavBar from index -->
     <nav>
         <a href="index.html">Home</a>
         <a href="shop.html">Shop</a>
@@ -241,9 +239,8 @@
     </header>
 
     <main class="catalog-container">
-        <div class="main-view-window">
-            <img src="images/guitar-repair.webp" style="width:100%; height:100%; object-fit:cover;" alt="Current Selection">
-        </div>
+        <!-- Main window now empty/black -->
+        <div class="main-view-window"></div>
 
         <div class="thumbnail-window">
             <div class="thumb-placeholder">Part 1</div>
