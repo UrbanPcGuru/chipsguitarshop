@@ -67,7 +67,7 @@
         /* =========================
            MAIN GRID
         ========================= */
-        .main-grid {
+        .main-grid, .second-row {
             width: 95%;
             max-width: 1600px;
             margin: auto;
@@ -80,7 +80,7 @@
         }
 
         /* =========================
-           IMAGE BOX
+           IMAGE BOX & ANIMATED GLOW
         ========================= */
         .image-box {
             position: relative;
@@ -89,19 +89,40 @@
             align-items: center;
             padding: 25px;
             border-radius: 25px;
-            overflow: hidden;
+            /* Removed overflow:hidden so glow can bleed out naturally */
         }
 
-        /* Animated Glow */
+        /* The 6-Color Animated Glow */
         .image-box::before {
             content: '';
             position: absolute;
-            width: 180%;
-            height: 180%;
-            background: conic-gradient(#ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
-            animation: spin 8s linear infinite;
-            filter: blur(60px);
+            width: 130%; /* Size of the glow behind the image */
+            height: 130%;
+            background: conic-gradient(
+                #ff0000, 
+                #ffff00, 
+                #00ff00, 
+                #00ffff, 
+                #0000ff, 
+                #ff00ff, 
+                #ff0000
+            );
+            animation: spin 6s linear infinite;
+            filter: blur(50px);
             opacity: 0.6;
+            z-index: 1; /* Keeps it behind the image */
+            border-radius: 50%;
+            transition: all 0.5s ease-in-out;
+        }
+
+        /* Hover Effect: Bright Green & Larger Image */
+        .image-box:hover::before {
+            background: #00ff00; /* Stays bright green */
+            animation: none;      /* Stops spinning */
+            opacity: 0.9;
+            width: 150%;
+            height: 150%;
+            filter: blur(60px);
         }
 
         @keyframes spin {
@@ -114,44 +135,21 @@
         ========================= */
         .image-box img {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Sits on top of the glow */
             width: 100%;
             max-width: 350px;
             border-radius: 20px;
             animation: float 5s ease-in-out infinite;
-            transition: 0.4s;
+            transition: transform 0.4s ease-in-out;
         }
 
-        .image-box img:hover {
-            transform: scale(1.05);
+        .image-box:hover img {
+            transform: scale(1.15); /* Gets larger on hover */
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* =========================
-           LOGO SPECIFIC
-        ========================= */
-        .logo-box img {
-            max-width: 350px;
-            animation: none; /* Logo doesn't necessarily need the float unless you want it */
-        }
-
-        /* =========================
-           SECOND ROW
-        ========================= */
-        .second-row {
-            width: 95%;
-            max-width: 1600px;
-            margin: auto;
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            justify-items: center;
-            align-items: center;
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
         /* =========================
@@ -165,7 +163,7 @@
             font-weight: bold;
             color: #00ffee;
             letter-spacing: 2px;
-            text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee, 0 0 20px #00ffee, 0 0 40px #00ffee;
+            text-shadow: 0 0 10px #00ffee, 0 0 20px #00ffee;
         }
 
         /* =========================
@@ -174,7 +172,7 @@
         @media(max-width: 1000px) {
             .main-grid, .second-row {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 60px;
             }
             .navbar {
                 flex-wrap: wrap;
@@ -186,75 +184,52 @@
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
     <div class="nav-wrapper">
         <nav class="navbar">
-            <a href="we-are-here.html">We Are Here</a>
+            <a href="we-are-here.html">Who We Are</a>
             <a href="services.html">Guitar Services</a>
             <a href="priors.html">Prior Projects</a>
             <a href="forums.html">Guitar Forums</a>
         </nav>
     </div>
 
-    <!-- =========================
-         FIRST ROW
-    ========================= -->
     <section class="main-grid">
-
-        <!-- COLUMN 1: Guitar Shop/Home -->
         <div class="image-box">
             <a href="index.html">
                 <img src="images/guitarshop.webp" alt="Guitar Shop">
             </a>
         </div>
 
-        <!-- COLUMN 2: Logo -->
         <div class="image-box logo-box">
             <img src="images/hippychipslogo.webp" alt="Hippy Chip's Guitar Shop Logo">
         </div>
 
-        <!-- COLUMN 3: Guitar Forums -->
         <div class="image-box">
             <a href="forums.html">
                 <img src="images/guitarforums.webp" alt="Guitar Forums">
             </a>
         </div>
-
     </section>
 
-    <!-- =========================
-         SECOND ROW
-    ========================= -->
     <section class="second-row">
-
-        <!-- COLUMN 1: Guitar Repair/Services -->
         <div class="image-box">
             <a href="services.html">
                 <img src="images/guitar-repair.webp" alt="Guitar Repair Services">
             </a>
         </div>
 
-        <!-- COLUMN 2: Prior Projects -->
         <div class="image-box">
             <a href="priors.html">
                 <img src="images/priorprojects.webp" alt="Prior Projects">
             </a>
         </div>
 
-        <!-- COLUMN 3: Empty (Keeps the 3-column grid alignment) -->
         <div></div>
-
     </section>
 
-    <!-- =========================
-         FOOTER
-    ========================= -->
     <footer>
         © Copyright www.hippychipsguitars.com
     </footer>
 
 </body>
-
 </html>
