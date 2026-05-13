@@ -22,38 +22,43 @@
             overflow-x: hidden;
         }
 
+        /* HEADER ALIGNMENT (Based on image_2b4d03.jpg) */
         header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            padding: 20px 50px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
             position: relative;
+            z-index: 2000;
         }
 
-        /* SEARCH CONTROLS (Top Right) */
-        .search-container {
+        .logo-small img {
+            width: 80px; /* Sized down for header */
+            height: auto;
+        }
+
+        .search-area {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 10px;
+            gap: 12px;
         }
 
         .category-row {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .cat-item {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 1rem;
             font-weight: bold;
-            cursor: pointer;
-            font-size: 0.9rem;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .cat-item input[type="radio"] {
@@ -68,74 +73,56 @@
         }
 
         .search-bar input {
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 15px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            width: 250px;
+            width: 280px;
         }
 
         .search-bar button {
             padding: 10px 20px;
             background: #00ffee;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             color: black;
             font-weight: bold;
             cursor: pointer;
         }
 
         /* =========================
-           SLIDER & HIDDEN LOGO AREA
+           SLIDER STACKING LOGIC
         ========================= */
         .slider-section {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px;
+            margin-top: 80px;
             position: relative;
-            height: 600px;
+            height: 550px;
         }
 
-        /* THE HIDDEN LOGO 
-           Positioned absolutely behind the frame */
+        /* 1. THE HIDDEN LOGO (Lowest z-index) */
         .logo-hidden {
             position: absolute;
-            z-index: 5; /* Lower than the frame */
-            width: 400px;
-            height: auto;
-            opacity: 1; 
+            z-index: 10;
+            width: 450px;
+            opacity: 1;
         }
 
         .logo-hidden img {
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 255, 238, 0.5));
         }
 
-        /* THE FRAME (slider.webp)
-           This sits ON TOP of the logo */
-        .slider-frame {
-            position: relative;
-            width: 900px; 
-            height: 500px;
-            background: url('./images/slider.webp') center center/contain no-repeat;
-            z-index: 100; /* Higher than the logo */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* THE SLIDER CONTENT
-           Sits inside the frame aperture */
+        /* 2. THE SLIDER CONTENT (Middle z-index) */
         .slider-content {
             position: absolute;
-            width: 820px; 
-            height: 420px;
-            z-index: 50; /* Between the hidden logo and the frame overlay */
+            width: 800px; /* Adjust to fit frame opening */
+            height: 400px;
+            z-index: 20; 
             overflow: hidden;
-            border-radius: 10px;
             background: #000;
         }
 
@@ -143,7 +130,7 @@
             display: flex;
             width: 300%;
             height: 100%;
-            animation: slideAnimation 12s infinite ease-in-out;
+            animation: slideShow 15s infinite ease-in-out;
         }
 
         .slide {
@@ -157,29 +144,41 @@
             object-fit: cover;
         }
 
-        @keyframes slideAnimation {
+        /* 3. THE FRAME (Highest z-index) */
+        .slider-frame {
+            position: absolute;
+            width: 950px; 
+            height: 520px;
+            background: url('./images/slider.webp') center center/contain no-repeat;
+            z-index: 30; /* Pulls frame to front to hide logo and clip slides */
+            pointer-events: none; /* Allows interaction with slides if needed */
+        }
+
+        @keyframes slideShow {
             0%, 25% { transform: translateX(0); }
             33%, 58% { transform: translateX(-33.33%); }
             66%, 91% { transform: translateX(-66.66%); }
             100% { transform: translateX(0); }
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
-            padding: 40px;
-            font-weight: bold;
+            padding: 50px 0;
             color: #00ffee;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 238, 0.6);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="nav-links">
-            <!-- Space reserved for your nav if needed -->
+        <div class="logo-small">
+            <a href="index.html"><img src="./images/hippychipslogo.webp" alt="Home"></a>
         </div>
 
-        <div class="search-container">
+        <div class="search-area">
             <div class="category-row">
                 <label class="cat-item">
                     <input type="radio" name="shop-cat" value="guitars" checked> Guitars
@@ -202,22 +201,22 @@
     <main>
         <section class="slider-section">
             
-            <!-- LOGO BEHIND EVERYTHING -->
+            <!-- Logo is first (Bottom) -->
             <div class="logo-hidden">
-                <img src="./images/hippychipslogo.webp" alt="Background Logo">
+                <img src="./images/hippychipslogo.webp" alt="Underlay Logo">
             </div>
 
-            <!-- FRAME ON TOP -->
-            <div class="slider-frame">
-                <!-- Content sits inside the 'window' of your slider.webp -->
-                <div class="slider-content">
-                    <div class="slides">
-                        <div class="slide"><img src="./images/guitar-1.webp" alt="Inventory 1"></div>
-                        <div class="slide"><img src="./images/guitar-2.webp" alt="Inventory 2"></div>
-                        <div class="slide"><img src="./images/guitar-3.webp" alt="Inventory 3"></div>
-                    </div>
+            <!-- Slides are second (Middle) -->
+            <div class="slider-content">
+                <div class="slides">
+                    <div class="slide"><img src="./images/guitar-1.webp" alt="Inventory 1"></div>
+                    <div class="slide"><img src="./images/guitar-2.webp" alt="Inventory 2"></div>
+                    <div class="slide"><img src="./images/guitar-3.webp" alt="Inventory 3"></div>
                 </div>
             </div>
+
+            <!-- Frame is third (Top) -->
+            <div class="slider-frame"></div>
 
         </section>
     </main>
