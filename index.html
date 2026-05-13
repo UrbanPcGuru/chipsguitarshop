@@ -8,7 +8,7 @@
 
     <style>
         /* =========================
-           GLOBAL
+           GLOBAL & BACKGROUND
         ========================= */
         * {
             margin: 0;
@@ -36,15 +36,11 @@
         }
 
         .navbar {
-            width: 90%;
-            max-width: 1400px;
-            padding: 20px;
+            padding: 20px 40px;
             border-radius: 20px;
             background: rgba(0, 0, 0, 0.70);
             backdrop-filter: blur(10px);
             display: flex;
-            justify-content: center;
-            align-items: center;
             gap: 40px;
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
@@ -57,17 +53,21 @@
         }
 
         /* =========================
-           GRID LAYOUTS
+           GRID ALIGNMENT
         ========================= */
         .main-grid, .second-row {
             width: 95%;
-            max-width: 1800px;
+            max-width: 1600px;
             margin: auto;
             display: grid;
-            grid-template-columns: 1fr auto 1fr; 
-            gap: 20px;
+            /* Column 1 (Left Pick) | Column 2 (Logo/Spacer) | Column 3 (Right Pick) */
+            grid-template-columns: 1fr 600px 1fr; 
             align-items: center;
             justify-items: center;
+        }
+
+        .second-row {
+            margin-top: -60px; /* Pulls the lower row up toward the logo */
         }
 
         /* =========================
@@ -78,15 +78,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 320px;
-            min-width: 320px;
+            min-height: 300px;
         }
 
         .image-box::before {
             content: '';
             position: absolute;
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(25px);
@@ -95,41 +94,46 @@
         }
 
         @keyframes cycleSingleColor {
-            0%, 100% { background: rgba(255, 0, 0, 0.8); box-shadow: 0 0 35px 5px red; }
-            16% { background: rgba(255, 255, 0, 0.8); box-shadow: 0 0 35px 5px yellow; }
-            33% { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 35px 5px green; }
-            50% { background: rgba(0, 255, 255, 0.8); box-shadow: 0 0 35px 5px cyan; }
-            66% { background: rgba(0, 0, 255, 0.8); box-shadow: 0 0 35px 5px blue; }
-            83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 35px 5px magenta; }
+            0%, 100% { background: rgba(255, 0, 0, 0.8); box-shadow: 0 0 30px 5px red; }
+            16% { background: rgba(255, 255, 0, 0.8); box-shadow: 0 0 30px 5px yellow; }
+            33% { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 30px 5px green; }
+            50% { background: rgba(0, 255, 255, 0.8); box-shadow: 0 0 30px 5px cyan; }
+            66% { background: rgba(0, 0, 255, 0.8); box-shadow: 0 0 30px 5px blue; }
+            83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 30px 5px magenta; }
         }
 
+        /* Independent timing for each pick */
         .pick-1::before { animation-delay: 0s; }
         .pick-2::before { animation-delay: -3s; }
         .pick-3::before { animation-delay: -6s; }
         .pick-4::before { animation-delay: -9s; }
 
         /* =========================
-           LOGO RAISE & SIZE
+           LOGO & SPACER
         ========================= */
         .logo-container {
-            margin-top: -150px; /* Pulls logo significantly higher */
+            margin-top: -180px; /* High lift into background wall space */
             z-index: 2;
         }
 
         .logo-container img {
-            width: 600px !important; /* Slightly smaller to fit better */
+            width: 600px !important; 
             height: auto;
             display: block;
         }
 
+        .row-spacer {
+            width: 600px; /* Exact match to logo width for column alignment */
+        }
+
         /* =========================
-           PICK IMAGES VISIBILITY
+           PICK IMAGES
         ========================= */
         .image-box img {
             display: block;
             position: relative;
-            z-index: 10; /* Ensures images stay on top */
-            width: 280px; 
+            z-index: 10;
+            width: 260px; 
             height: auto;
             border-radius: 20px;
             animation: floating 6s ease-in-out infinite;
@@ -137,18 +141,17 @@
 
         @keyframes floating {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .row-spacer {
-            width: 600px; /* Matches the new logo width */
+            50% { transform: translateY(-12px); }
         }
 
         /* =========================
            MOBILE
         ========================= */
-        @media(max-width: 1000px) {
-            .main-grid, .second-row { grid-template-columns: 1fr; }
+        @media(max-width: 1100px) {
+            .main-grid, .second-row { 
+                grid-template-columns: 1fr; 
+                margin-top: 0;
+            }
             .logo-container { margin-top: 0; }
             .row-spacer { display: none; }
         }
@@ -166,6 +169,7 @@
         </nav>
     </div>
 
+    <!-- ROW 1 -->
     <section class="main-grid">
         <div class="image-box pick-1">
             <a href="index.html">
@@ -184,6 +188,7 @@
         </div>
     </section>
 
+    <!-- ROW 2 (Aligned with Row 1) -->
     <section class="second-row">
         <div class="image-box pick-3">
             <a href="services.html">
