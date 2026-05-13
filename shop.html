@@ -16,7 +16,8 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #000 url('images/shopbackground.webp') no-repeat center center fixed;
+            /* background-position changed to 'center 20%' to move it down */
+            background: #000 url('images/shopbackground.webp') no-repeat center 20% fixed;
             background-size: cover;
             min-height: 100vh;
             color: white;
@@ -38,19 +39,17 @@
             z-index: 1000;
         }
 
-        /* Logo made bigger */
         .logo-small img {
             width: 120px; 
             height: auto;
         }
 
-        /* Container centered specifically around search/categories */
         .search-area {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            background: rgba(45, 30, 20, 0.85); /* Dark brown/black container */
+            background: rgba(45, 30, 20, 0.85); 
             padding: 15px 25px;
             border-radius: 8px;
             backdrop-filter: blur(10px);
