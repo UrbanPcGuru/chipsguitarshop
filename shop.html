@@ -17,8 +17,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
-            /* background-position pushed down to 110px to clear the nav and header areas */
-            background: #000 url('images/shopbackground.webp') no-repeat center 110px fixed;
+            /* Background position fixed to align with your shop interior image */
+            background: #000 url('images/shopbackground.webp') no-repeat center 85px fixed;
             background-size: cover;
             height: 100vh; 
             width: 100vw;
@@ -124,28 +124,27 @@
         }
 
         /* =========================
-           SPACER & SLIDER
+           SCALED SLIDER
         ========================= */
-        .top-spacer {
-            height: 40px; /* Adjust this to move the background content down further */
-            width: 100%;
-        }
-
         .catalog-container {
             position: relative;
             flex-grow: 1; 
-            width: 1040px; 
+            /* Reduced size to fit between background text and footer */
+            width: 780px; 
+            height: 440px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: -30px; 
+            /* margin-top increased to 80px to move it below the background sign */
+            margin-top: 80px; 
         }
 
         .main-view-window {
             position: absolute;
-            top: 55px;   
-            width: 880px;
-            height: 380px;
+            /* Adjusted for the new smaller frame size */
+            top: 40px;   
+            width: 660px;
+            height: 280px;
             z-index: 50;
             overflow: hidden;
             background: #000;
@@ -170,7 +169,7 @@
         footer {
             width: 100%;
             text-align: center;
-            padding-bottom: 20px; 
+            padding-bottom: 25px; 
             color: #000000; 
             font-size: 0.8rem; 
             font-weight: bold;
@@ -208,9 +207,6 @@
             </div>
         </div>
     </header>
-
-    <!-- Spacer to move content down past the header -->
-    <div class="top-spacer"></div>
 
     <main class="catalog-container">
         <div class="main-view-window"></div>
