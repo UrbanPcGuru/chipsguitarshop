@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who We Are | Hippy Chip's Guitar Shop</title>
+
+    <style>
+        /* =========================
+           GLOBAL
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: url('images/background.webp') center center/cover no-repeat fixed;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           NAV BAR (Consistent)
+        ========================= */
+        .nav-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+            margin-bottom: 50px;
+        }
+
+        .navbar {
+            width: 90%;
+            max-width: 1400px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.70);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.20), 0 0 40px rgba(255, 0, 255, 0.15);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .navbar a:hover {
+            color: #00ffee;
+            text-shadow: 0 0 5px #00ffee, 0 0 10px #00ffee;
+        }
+
+        /* =========================
+           CONTENT LAYOUT
+        ========================= */
+        .content-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 80px auto;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-header img {
+            max-width: 300px;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.3));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #00ffee;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .bio-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .highlight {
+            color: #00ffee;
+            font-weight: bold;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #00ffee;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #00ffee;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+        @media(max-width: 768px) {
+            .content-container {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .navbar {
+                flex-wrap: wrap;
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav-wrapper">
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="we-are-here.html" style="color: #00ffee;">Who We Are</a>
+            <a href="services.html">Guitar Services</a>
+            <a href="priors.html">Prior Projects</a>
+            <a href="forums.html">Guitar Forums</a>
+        </nav>
+    </div>
+
+    <main class="content-container">
+        
+        <div class="logo-header">
+            <!-- Consistent Logo Usage -->
+            <img src="images/hippychipslogo.webp" alt="Hippy Chip's Guitar Shop Logo">
+        </div>
+
+        <h1>Our Story</h1>
+
+        <div class="bio-text">
+            <p>
+                Founded in the heart of a dust-filled garage where the smell of sawdust met the hum of tube amplifiers, <span class="highlight">Hippy Chip’s Guitar LLC</span> was born from a simple obsession: the pursuit of the perfect resonance. 
+            </p>
+
+            <p>
+                What started as a hobby of rescuing "pawn shop prizes" and forgotten relics turned into a mission to bridge the gap between vintage soul and modern technical precision. At Hippy Chip's, we don't just see a guitar as a collection of wood and wire—we see it as a living, breathing extension of the artist.
+            </p>
+
+            <p>
+                Our philosophy is simple: <span class="highlight">Respect the wood, master the tech.</span> Whether we are performing surgical-grade PCB repairs on vintage pedals, carving a custom neck that feels like home, or deep-diving into the electronics of a modern masterpiece, we treat every instrument with the reverence it deserves.
+            </p>
+
+            <p>
+                The "Hippy" in our name represents the creative, free-spirited art of luthiery—the belief that every guitar has its own unique voice. The "Chip" represents the micro-precision of the 21st century—the technical expertise required to ensure every circuit is clean and every fret is perfect.
+            </p>
+
+            <p>
+                We aren't just a shop; we are a community of builders, players, and gear-heads. From the first solder joint to the final setup, we’re here to make sure your sound is as legendary as your spirit.
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        © Copyright www.hippychipsguitars.com
+    </footer>
+
+</body>
+</html>
