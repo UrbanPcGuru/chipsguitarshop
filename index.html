@@ -55,8 +55,8 @@
         }
 
         /* =========================
-           FOUR CORNERS GRID SYSTEM
-           Forces picks into fixed columns 1 and 5
+           STABILIZED GRID SYSTEM
+           Forces 2 on left, Logo center, 2 on right
         ========================= */
         .main-container {
             flex: 1;
@@ -64,43 +64,45 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 0 40px;
+            padding: 0 50px;
         }
 
         .content-grid {
             display: grid;
-            /* 5 Columns: Pick | Space | Logo | Space | Pick */
-            grid-template-columns: 240px 1fr 630px 1fr 240px;
-            grid-template-rows: auto auto;
+            /* Column 1: Left Picks | Column 2: Logo | Column 3: Right Picks */
+            grid-template-columns: 300px 1fr 300px;
+            grid-template-rows: 1fr 1fr;
             align-items: center;
             justify-items: center;
             width: 100%;
-            max-width: 1600px;
+            max-width: 1400px;
+            /* Vertical padding between the top and bottom rows */
+            row-gap: 80px; 
         }
 
         /* =========================
-           LOGO POSITIONING & EXTENDED GLOW
+           LOGO POSITIONING & LARGE GLOW
         ========================= */
         .logo-container {
-            grid-column: 3;
-            grid-row: 1 / span 2;
+            grid-column: 2;
+            grid-row: 1 / span 2; /* Center logo between both rows */
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: -180px; /* Centered in sphere below Nav */
+            margin-top: -180px; /* Aligned with background sphere */
         }
 
         .logo-container::before {
             content: '';
             position: absolute;
-            /* Increased size to extend beyond logo diameter */
-            width: 650px; 
-            height: 650px; 
+            /* Size extends beyond logo diameter */
+            width: 700px; 
+            height: 700px; 
             border-radius: 50%;
             z-index: 1;
-            filter: blur(70px); 
-            opacity: 0.45;
+            filter: blur(80px); 
+            opacity: 0.5;
             animation: cycleColors 15s linear infinite;
             animation-delay: -5s; 
         }
@@ -115,34 +117,34 @@
         }
 
         /* =========================
-           PICK PLACEMENT (4 CORNERS)
+           PICK PLACEMENT (CORNER LOCK)
         ========================= */
-        .pick-left-top     { grid-column: 1; grid-row: 1; }
-        .pick-left-bottom  { grid-column: 1; grid-row: 2; }
-        .pick-right-top    { grid-column: 5; grid-row: 1; }
-        .pick-right-bottom { grid-column: 5; grid-row: 2; }
+        .pick-1 { grid-column: 1; grid-row: 1; } /* Top Left */
+        .pick-3 { grid-column: 1; grid-row: 2; } /* Bottom Left */
+        .pick-2 { grid-column: 3; grid-row: 1; } /* Top Right */
+        .pick-4 { grid-column: 3; grid-row: 2; } /* Bottom Right */
 
         .image-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 280px;
+            width: 100%;
         }
 
         .image-box::before {
             content: '';
             position: absolute;
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             z-index: 1; 
-            filter: blur(25px);
+            filter: blur(30px);
             opacity: 0.6;
             animation: cycleColors 12s linear infinite;
         }
 
-        /* Staggered offsets for different colors at all times */
+        /* Staggered delays so no two colors match */
         .pick-1::before { animation-delay: 0s; }
         .pick-2::before { animation-delay: -3s; }
         .pick-3::before { animation-delay: -6s; }
@@ -161,7 +163,7 @@
         .image-box img {
             position: relative;
             z-index: 10;
-            width: 220px; 
+            width: 240px; 
             height: auto;
             border-radius: 15px;
             animation: floating 6s ease-in-out infinite;
@@ -184,17 +186,18 @@
             font-size: 1.1rem;
         }
 
-        @media(max-width: 1250px) {
+        /* Mobile layout: Stacks vertically on small screens */
+        @media(max-width: 1100px) {
             .content-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                row-gap: 30px;
             }
             .logo-container {
                 grid-column: 1;
                 grid-row: 1;
                 margin-top: 20px;
             }
-            .pick-left-top, .pick-left-bottom, .pick-right-top, .pick-right-bottom {
+            .pick-1, .pick-2, .pick-3, .pick-4 {
                 grid-column: 1;
                 grid-row: auto;
             }
@@ -216,26 +219,26 @@
     <div class="main-container">
         <div class="content-grid">
             
-            <!-- LEFT SIDE -->
-            <div class="image-box pick-1 pick-left-top">
+            <!-- LEFT COLUMN -->
+            <div class="image-box pick-1">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
 
-            <div class="image-box pick-3 pick-left-bottom">
+            <div class="image-box pick-3">
                 <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
             </div>
 
-            <!-- CENTER -->
+            <!-- CENTER LOGO -->
             <div class="logo-container">
                 <img src="./images/hippychipslogo.webp" alt="Logo">
             </div>
 
-            <!-- RIGHT SIDE -->
-            <div class="image-box pick-2 pick-right-top">
+            <!-- RIGHT COLUMN -->
+            <div class="image-box pick-2">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
 
-            <div class="image-box pick-4 pick-right-bottom">
+            <div class="image-box pick-4">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
             </div>
 
