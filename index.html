@@ -34,7 +34,7 @@
             display: flex;
             justify-content: center;
             margin-top: 25px;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .navbar {
@@ -74,8 +74,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Lowered further from -40px to -20px */
-            margin-top: -20px; 
+            /* Lowered further as requested */
+            margin-top: 20px; 
         }
 
         .logo-container {
@@ -83,45 +83,44 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 630px;
+            height: 630px;
         }
 
-        /* ULTRA-LOW LOGO GLOW: Corrected Size */
+        /* TIGHT ANIMATED GLOW - 4px Limit */
         .logo-container::before {
             content: '';
             position: absolute;
-            width: 638px; /* Strict 4px margin past the 630px logo */
-            height: 638px; 
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
             border-radius: 50%;
             z-index: 1;
-            filter: blur(4px); 
-            opacity: 0.5;
-            animation: cycleLogoGlow 15s linear infinite;
+            /* Ensuring blur doesn't make it look "huge" like in image_2d26d1.jpg */
+            filter: blur(5px);
+            animation: cycleLogoGlow 10s linear infinite;
         }
 
         .logo-container img {
             position: relative;
             z-index: 10;
-            width: 100%;
-            max-width: 630px; 
-            height: auto;
+            width: 630px;
+            height: 630px;
             display: block;
         }
 
         @keyframes cycleLogoGlow {
-            0%   { background: red; box-shadow: 0 0 5px red; }
-            16%  { background: yellow; box-shadow: 0 0 5px yellow; }
-            33%  { background: green; box-shadow: 0 0 5px green; }
-            50%  { background: cyan; box-shadow: 0 0 5px cyan; }
-            66%  { background: blue; box-shadow: 0 0 5px blue; }
-            83%  { background: magenta; box-shadow: 0 0 5px magenta; }
-            100% { background: red; box-shadow: 0 0 5px red; }
+            0%   { box-shadow: 0 0 10px red; background: rgba(255, 0, 0, 0.2); }
+            20%  { box-shadow: 0 0 10px yellow; background: rgba(255, 255, 0, 0.2); }
+            40%  { box-shadow: 0 0 10px green; background: rgba(0, 255, 0, 0.2); }
+            60%  { box-shadow: 0 0 10px cyan; background: rgba(0, 255, 255, 0.2); }
+            80%  { box-shadow: 0 0 10px blue; background: rgba(0, 0, 255, 0.2); }
+            100% { box-shadow: 0 0 10px red; background: rgba(255, 0, 0, 0.2); }
         }
 
         /* PICKS COLUMNS (Left & Right) */
         .picks-column {
             display: flex;
             flex-direction: column;
-            gap: 100px; /* Spacing between top and bottom picks */
+            gap: 120px; 
             justify-content: center;
         }
 
@@ -130,32 +129,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            transition: transform 0.3s ease;
         }
 
-        /* RESTORED PICK GLOWS (Auras) */
-        .image-box::before {
+        .image-box:hover {
+            transform: scale(1.1);
+        }
+
+        /* RESTORED PICK GLOWS */
+        .image-box::after {
             content: '';
             position: absolute;
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(25px);
-            opacity: 0.6;
-            animation: cyclePickGlow 12s linear infinite;
+            opacity: 0.7;
+            animation: cyclePickGlow 8s linear infinite;
         }
 
-        /* Animation Offsets for Variety */
-        .pick-1::before { animation-delay: 0s; }
-        .pick-2::before { animation-delay: -3s; }
-        .pick-3::before { animation-delay: -6s; }
-        .pick-4::before { animation-delay: -9s; }
+        /* Offsets for variety */
+        .pick-1::after { animation-delay: 0s; }
+        .pick-2::after { animation-delay: -2s; }
+        .pick-3::after { animation-delay: -4s; }
+        .pick-4::after { animation-delay: -6s; }
 
         @keyframes cyclePickGlow {
-            0%   { background: red; }
-            33%  { background: green; }
-            66%  { background: blue; }
-            100% { background: red; }
+            0%   { background: red; box-shadow: 0 0 20px red; }
+            33%  { background: green; box-shadow: 0 0 20px green; }
+            66%  { background: blue; box-shadow: 0 0 20px blue; }
+            100% { background: red; box-shadow: 0 0 20px red; }
         }
 
         .image-box img {
@@ -169,7 +173,7 @@
 
         @keyframes floating {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
         /* FOOTER */
