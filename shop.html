@@ -1,118 +1,268 @@
-<style>
-    /* =========================
-       DYNAMIC SLIDER WRAPPER
-    ========================= */
-    .catalog-container {
-        position: relative;
-        width: 1040px; /* Adjusted to match slider.jpg proportions */
-        height: 600px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hippy Chip's Guitar Shop - Component Catalog</title>
+    <style>
+        /* =========================
+           GLOBAL SETUP & BACKGROUND
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* THE PHYSICAL FRAME OVERLAY (slider.jpg) */
-    /* This must be a PNG or WebP with transparency in the center */
-    .catalog-frame {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('./images/slider.png') center no-repeat;
-        background-size: contain;
-        z-index: 100; /* Stays on top */
-        pointer-events: none;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            /* Applying requested background */
+            background: url('./images/shop background.webp') center center/cover no-repeat fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+        }
 
-    /* MAIN PRODUCT DISPLAY (Behind the top window) */
-    .main-view-window {
-        position: absolute;
-        top: 55px;   /* Alignment for the main large window */
-        width: 880px;
-        height: 400px;
-        z-index: 50;
-        overflow: hidden;
-        background: #1a1a1a; /* Backup color if image fails */
-    }
+        /* =========================
+           HEADER & SEARCH
+        ========================= */
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
 
-    .main-product-placeholder {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        .search-area {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
 
-    /* LOWER GALLERY (Behind the bottom thumbnails) */
-    .thumbnail-window {
-        position: absolute;
-        bottom: 35px; /* Alignment for the smaller bottom bar */
-        width: 780px;
-        height: 100px;
-        z-index: 50;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 0 10px;
-    }
+        .category-row {
+            display: flex;
+            gap: 20px;
+        }
 
-    .thumb-placeholder {
-        width: 240px; /* Sized to match the 3 slots in slider.jpg */
-        height: 80px;
-        background: rgba(0, 255, 238, 0.05);
-        border: 1px solid rgba(0, 255, 238, 0.2);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.7rem;
-        color: #00ffee;
-        text-transform: uppercase;
-    }
+        .cat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
 
-    /* INTERACTIVE OVERLAYS (Navigation Arrows) */
-    .nav-hitbox {
-        position: absolute;
-        top: 240px;
-        width: 60px;
-        height: 60px;
-        z-index: 150; /* Above the frame */
-        cursor: pointer;
-        border-radius: 50%;
-        /* Use background: rgba(255,0,0,0.5) to debug placement */
-    }
-    .prev-btn { left: 15px; }
-    .next-btn { right: 15px; }
+        .cat-item input[type="radio"] {
+            accent-color: #00ffee;
+            width: 18px;
+            height: 18px;
+        }
 
-</style>
+        .search-bar {
+            display: flex;
+            gap: 5px;
+        }
 
-<div class="catalog-container">
-    <!-- 1. The Dynamic Data Layers (Behind) -->
-    <div class="main-view-window">
-        <!-- Placeholder for Main Database Image -->
-        <img src="./images/placeholder-main-bridge.webp" class="main-product-placeholder" alt="Main View">
-    </div>
+        .search-bar input {
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 250px;
+        }
 
-    <div class="thumbnail-window">
-        <!-- Placeholders for Database Row Thumbnails -->
-        <div class="thumb-placeholder">
-            <span>Product A</span>
-            <small>Data Placeholder</small>
+        .search-bar button {
+            padding: 10px 20px;
+            background: #00ffee;
+            border: none;
+            border-radius: 4px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* =========================
+           DYNAMIC SLIDER WRAPPER
+        ========================= */
+        .catalog-container {
+            position: relative;
+            width: 1040px; 
+            height: 600px;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* THE PHYSICAL FRAME OVERLAY (slider.jpg / slider.png) */
+        .catalog-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Frame sits on top of everything */
+            background: url('./images/slider.png') center no-repeat;
+            background-size: contain;
+            z-index: 100; 
+            pointer-events: none;
+        }
+
+        /* MAIN PRODUCT DISPLAY (Behind the top window) */
+        .main-view-window {
+            position: absolute;
+            top: 55px;   
+            width: 880px;
+            height: 380px;
+            z-index: 50;
+            overflow: hidden;
+            background: #000;
+            border-radius: 10px;
+        }
+
+        .main-product-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* LOWER GALLERY (Behind the bottom thumbnails) */
+        .thumbnail-window {
+            position: absolute;
+            bottom: 38px; 
+            width: 790px;
+            height: 95px;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5px;
+        }
+
+        .thumb-placeholder {
+            width: 32%; 
+            height: 85%;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 238, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #00ffee;
+            text-transform: uppercase;
+        }
+
+        /* INTERACTIVE OVERLAYS */
+        .nav-hitbox {
+            position: absolute;
+            top: 240px;
+            width: 70px;
+            height: 70px;
+            z-index: 150; 
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .nav-hitbox:hover {
+            background: rgba(0, 255, 238, 0.1);
+        }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            color: #00ffee;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 238, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-small">
+            <a href="index.html">
+                <img src="./images/hippychipslogo.webp" alt="Logo" style="width: 80px; height: auto;">
+            </a>
         </div>
-        <div class="thumb-placeholder">
-            <span>Product B</span>
-            <small>Active Selection</small>
-        </div>
-        <div class="thumb-placeholder">
-            <span>Product C</span>
-            <small>Data Placeholder</small>
-        </div>
-    </div>
 
-    <!-- 2. The Transparent Frame (On Top) -->
-    <div class="catalog-frame"></div>
+        <div class="search-area">
+            <div class="category-row">
+                <label class="cat-item">
+                    <input type="radio" name="shop-cat" value="guitars" checked> Guitars
+                </label>
+                <label class="cat-item">
+                    <input type="radio" name="shop-cat" value="parts"> Parts
+                </label>
+                <label class="cat-item">
+                    <input type="radio" name="shop-cat" value="merch"> Merch
+                </label>
+            </div>
 
-    <!-- 3. Invisible Clickable Nav Areas -->
-    <div class="nav-hitbox prev-btn" onclick="prevProduct()"></div>
-    <div class="nav-hitbox next-btn" onclick="nextProduct()"></div>
-</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search components...">
+                <button type="submit">GO</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="catalog-container">
+        <!-- 1. The Dynamic Data Layers (Behind) -->
+        <div class="main-view-window">
+            <img src="./images/placeholder-main-bridge.webp" class="main-product-placeholder" alt="Main View">
+        </div>
+
+        <div class="thumbnail-window">
+            <div class="thumb-placeholder">
+                <span>Part A</span>
+                <small>In Stock</small>
+            </div>
+            <div class="thumb-placeholder">
+                <span>Part B</span>
+                <small>Custom Built</small>
+            </div>
+            <div class="thumb-placeholder">
+                <span>Part C</span>
+                <small>Aged Copper</small>
+            </div>
+        </div>
+
+        <!-- 2. The Transparent Frame (On Top) -->
+        <div class="catalog-frame"></div>
+
+        <!-- 3. Invisible Clickable Nav Areas (Positioned over the dials) -->
+        <div class="nav-hitbox prev-btn" title="Previous Item"></div>
+        <div class="nav-hitbox next-btn" title="Next Item"></div>
+    </main>
+
+    <footer>
+        © Copyright www.hippychipsguitars.com
+    </footer>
+
+    <script>
+        // Placeholders for your database logic
+        function prevProduct() {
+            console.log("Loading previous product from database...");
+        }
+        function nextProduct() {
+            console.log("Loading next product from database...");
+        }
+
+        document.querySelector('.prev-btn').addEventListener('click', prevProduct);
+        document.querySelector('.next-btn').addEventListener('click', nextProduct);
+    </script>
+
+</body>
+</html>
