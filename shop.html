@@ -17,7 +17,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
-            /* Background position fixed to align with your shop interior image */
             background: #000 url('images/shopbackground.webp') no-repeat center 85px fixed;
             background-size: cover;
             height: 100vh; 
@@ -30,125 +29,122 @@
         }
 
         /* =========================
-           PERMANENT NAVBAR
+           NAVBAR WITH SEARCH
         ========================= */
         nav {
             width: 100%;
             background-color: #000;
-            padding: 15px 0;
-            text-align: center;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 2000;
             flex-shrink: 0;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 1.1rem;
+        .nav-links {
+            display: flex;
+            gap: 20px;
         }
 
-        nav a:hover {
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
             color: #00ffee;
         }
 
-        /* =========================
-           LOGO & SEARCH AREA
-        ========================= */
-        header {
-            width: 100%;
+        /* Integrated Search Area */
+        .nav-search {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 10px 40px;
-            z-index: 1000;
-            flex-shrink: 0;
-        }
-
-        .logo-large img {
-            width: 300px; 
-            height: auto;
-        }
-
-        .search-area {
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 10px;
-            background: rgba(45, 30, 20, 0.8); 
-            padding: 12px 20px;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .category-row {
-            display: flex;
             gap: 15px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8rem;
         }
 
-        .cat-item {
+        .nav-categories {
+            display: flex;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .nav-categories label {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             cursor: pointer;
         }
 
-        .search-bar {
+        .nav-search-bar {
             display: flex;
             gap: 5px;
         }
 
-        .search-bar input {
-            padding: 6px 10px;
+        .nav-search-bar input {
+            padding: 4px 8px;
             border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+            background: #111;
             color: white;
-            width: 180px;
+            width: 150px;
+            font-size: 0.8rem;
         }
 
-        .search-bar button {
-            padding: 6px 12px;
+        .nav-search-bar button {
+            padding: 4px 10px;
             background: #00ffee;
             border: none;
             border-radius: 4px;
             color: black;
             font-weight: bold;
             cursor: pointer;
+            font-size: 0.8rem;
         }
 
         /* =========================
-           SCALED SLIDER
+           LOGO AREA
+        ========================= */
+        header {
+            width: 100%;
+            padding: 10px 40px;
+            z-index: 1000;
+            flex-shrink: 0;
+        }
+
+        .logo-large img {
+            width: 220px; 
+            height: auto;
+        }
+
+        /* =========================
+           SMALLER SLIDER
         ========================= */
         .catalog-container {
             position: relative;
             flex-grow: 1; 
-            /* Reduced size to fit between background text and footer */
-            width: 780px; 
-            height: 440px;
+            /* Smaller dimensions to clear the background "Digital Product Archive" sign */
+            width: 700px; 
+            height: 380px;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* margin-top increased to 80px to move it below the background sign */
-            margin-top: 80px; 
+            margin-top: 110px; /* Pushes it down into the workspace area */
         }
 
         .main-view-window {
             position: absolute;
-            /* Adjusted for the new smaller frame size */
-            top: 40px;   
-            width: 660px;
-            height: 280px;
+            top: 35px;   
+            width: 590px;
+            height: 245px;
             z-index: 50;
             overflow: hidden;
             background: #000;
-            border-radius: 12px;
+            border-radius: 10px;
         }
 
         .catalog-frame {
@@ -181,11 +177,25 @@
 <body>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="#repairs">Repairs</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="#repairs">Repairs</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="nav-search">
+            <div class="nav-categories">
+                <label><input type="radio" name="cat" checked> GUITARS</label>
+                <label><input type="radio" name="cat"> PARTS</label>
+                <label><input type="radio" name="cat"> MERCH</label>
+            </div>
+            <div class="nav-search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="button">GO</button>
+            </div>
+        </div>
     </nav>
 
     <header>
@@ -193,18 +203,6 @@
             <a href="index.html">
                 <img src="images/hippychipslogo.webp" alt="Logo">
             </a>
-        </div>
-
-        <div class="search-area">
-            <div class="category-row">
-                <label class="cat-item"><input type="radio" name="cat" checked> GUITARS</label>
-                <label class="cat-item"><input type="radio" name="cat"> PARTS</label>
-                <label class="cat-item"><input type="radio" name="cat"> MERCH</label>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button type="button">GO</button>
-            </div>
         </div>
     </header>
 
