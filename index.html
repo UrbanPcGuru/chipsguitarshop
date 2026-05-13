@@ -65,7 +65,7 @@
         }
 
         /* =========================
-           MAIN GRID
+           GRID LAYOUTS
         ========================= */
         .main-grid, .second-row {
             width: 95%;
@@ -80,54 +80,55 @@
         }
 
         /* =========================
-           IMAGE BOX & ANIMATED GLOW
+           IMAGE BOX & STARBURST GLOW
         ========================= */
         .image-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px;
-            border-radius: 25px;
-            /* Removed overflow:hidden so glow can bleed out naturally */
+            padding: 40px;
+            /* No overflow:hidden to allow light to leak out */
         }
 
-        /* The 6-Color Animated Glow */
+        /* The 6-Color Starburst Glow (Behind Image) */
         .image-box::before {
             content: '';
             position: absolute;
-            width: 130%; /* Size of the glow behind the image */
-            height: 130%;
-            background: conic-gradient(
-                #ff0000, 
-                #ffff00, 
-                #00ff00, 
-                #00ffff, 
-                #0000ff, 
-                #ff00ff, 
-                #ff0000
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, 
+                rgba(255,0,0,0.8) 0%, 
+                rgba(255,255,0,0.6) 20%, 
+                rgba(0,255,0,0.5) 40%, 
+                rgba(0,255,255,0.4) 60%, 
+                rgba(0,0,255,0.3) 80%, 
+                transparent 100%
             );
-            animation: spin 6s linear infinite;
-            filter: blur(50px);
-            opacity: 0.6;
-            z-index: 1; /* Keeps it behind the image */
-            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 1; 
+            opacity: 0.7;
             transition: all 0.5s ease-in-out;
+            animation: pulseGlow 4s infinite alternate;
         }
 
-        /* Hover Effect: Bright Green & Larger Image */
+        /* Hover: Turn Bright Green and Grow */
         .image-box:hover::before {
-            background: #00ff00; /* Stays bright green */
-            animation: none;      /* Stops spinning */
-            opacity: 0.9;
-            width: 150%;
-            height: 150%;
-            filter: blur(60px);
+            background: radial-gradient(circle, 
+                rgba(0, 255, 0, 1) 0%, 
+                rgba(0, 255, 0, 0.6) 50%, 
+                transparent 100%
+            );
+            width: 350px;
+            height: 350px;
+            filter: blur(50px);
+            opacity: 1;
+            animation: none; /* Stops pulsing to stay solid green */
         }
 
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.2); opacity: 0.9; }
         }
 
         /* =========================
@@ -135,10 +136,12 @@
         ========================= */
         .image-box img {
             position: relative;
-            z-index: 2; /* Sits on top of the glow */
+            z-index: 2; /* Ensures image stays in front of light */
             width: 100%;
-            max-width: 350px;
+            max-width: 300px;
             border-radius: 20px;
+            background: transparent;
+            border: none;
             animation: float 5s ease-in-out infinite;
             transition: transform 0.4s ease-in-out;
         }
@@ -149,7 +152,7 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
         }
 
         /* =========================
@@ -167,7 +170,7 @@
         }
 
         /* =========================
-           MOBILE
+           MOBILE RESPONSIVENESS
         ========================= */
         @media(max-width: 1000px) {
             .main-grid, .second-row {
@@ -184,6 +187,7 @@
 
 <body>
 
+    <!-- NAVIGATION -->
     <div class="nav-wrapper">
         <nav class="navbar">
             <a href="we-are-here.html">Who We Are</a>
@@ -193,6 +197,7 @@
         </nav>
     </div>
 
+    <!-- FIRST ROW -->
     <section class="main-grid">
         <div class="image-box">
             <a href="index.html">
@@ -211,6 +216,7 @@
         </div>
     </section>
 
+    <!-- SECOND ROW -->
     <section class="second-row">
         <div class="image-box">
             <a href="services.html">
@@ -224,12 +230,15 @@
             </a>
         </div>
 
+        <!-- Spacer for 3-column layout alignment -->
         <div></div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         © Copyright www.hippychipsguitars.com
     </footer>
 
 </body>
+
 </html>
