@@ -71,9 +71,8 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            /* Lowered from -165px to -140px to sit better in the sphere */
-            margin-top: -140px; 
-            margin-bottom: 35px;
+            margin-top: -90px; 
+            margin-bottom: 40px;
         }
 
         .logo-container {
@@ -83,17 +82,17 @@
             align-items: center;
         }
 
-        /* TIGHT GLOW: 4px past 630px border */
+        /* TIGHTER GLOW: Reduced blur and shadow spread */
         .logo-container::before {
             content: '';
             position: absolute;
-            width: 638px; 
+            width: 638px; /* 630px + 4px padding on each side */
             height: 638px; 
             border-radius: 50%;
             z-index: 1;
-            filter: blur(8px); 
-            opacity: 0.65;
-            animation: cycleColors 15s linear infinite;
+            filter: blur(4px); /* Sharper, lower glow */
+            opacity: 0.5; /* Slightly more subtle transparency */
+            animation: cycleLogoGlow 15s linear infinite;
             animation-delay: -5s; 
         }
 
@@ -106,7 +105,20 @@
             display: block;
         }
 
-        /* ROWS 2 & 3: 3-COLUMN PICKS */
+        /* TIGHT GLOW ANIMATION */
+        @keyframes cycleLogoGlow {
+            0%   { background: red; box-shadow: 0 0 10px red; }
+            16%  { background: yellow; box-shadow: 0 0 10px yellow; }
+            33%  { background: green; box-shadow: 0 0 10px green; }
+            50%  { background: cyan; box-shadow: 0 0 10px cyan; }
+            66%  { background: blue; box-shadow: 0 0 10px blue; }
+            83%  { background: magenta; box-shadow: 0 0 10px magenta; }
+            100% { background: red; box-shadow: 0 0 10px red; }
+        }
+
+        /* =========================
+           GRID & PICKS
+        ========================= */
         .picks-grid {
             display: grid;
             grid-template-columns: 280px 1fr 280px;
@@ -118,9 +130,6 @@
             justify-items: center;
         }
 
-        /* =========================
-           PICK STYLING
-        ========================= */
         .image-box {
             position: relative;
             display: flex;
