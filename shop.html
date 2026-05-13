@@ -6,7 +6,7 @@
     <title>Hippy Chip's Guitar Shop - Inventory</title>
     <style>
         /* =========================
-           GLOBAL & BACKGROUND
+           GLOBAL & NO-SCROLL
         ========================= */
         * {
             margin: 0;
@@ -16,15 +16,17 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* background-position changed to 70% to lower the image further below the nav bar */
-            background: #000 url('images/shopbackground.webp') no-repeat center 70% fixed;
+            background-color: #000;
+            /* background-position changed to 'center 85px' to start exactly below the nav bar */
+            background: #000 url('images/shopbackground.webp') no-repeat center 85px fixed;
             background-size: cover;
-            min-height: 100vh;
+            height: 100vh; /* Fixed height for no-scroll */
+            width: 100vw;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
+            overflow: hidden; /* Disables scrolling */
         }
 
         /* =========================
@@ -33,9 +35,10 @@
         nav {
             width: 100%;
             background-color: #000;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
             z-index: 2000;
+            flex-shrink: 0;
         }
 
         nav a {
@@ -44,7 +47,7 @@
             margin: 0 20px;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
         }
 
         nav a:hover {
@@ -59,8 +62,9 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 20px 40px;
+            padding: 10px 40px;
             z-index: 1000;
+            flex-shrink: 0;
         }
 
         .logo-large img {
@@ -73,31 +77,26 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            background: rgba(45, 30, 20, 0.85); 
-            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.7); 
+            padding: 12px 20px;
             border-radius: 8px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 10px;
         }
 
         .category-row {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             font-weight: bold;
             text-transform: uppercase;
+            font-size: 0.8rem;
         }
 
         .cat-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        .cat-item input[type="radio"] {
-            accent-color: #00ffee;
         }
 
         .search-bar {
@@ -106,16 +105,16 @@
         }
 
         .search-bar input {
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(0, 0, 0, 0.6);
             color: white;
-            width: 200px;
+            width: 180px;
         }
 
         .search-bar button {
-            padding: 8px 15px;
+            padding: 6px 12px;
             background: #00ffee;
             border: none;
             border-radius: 4px;
@@ -125,16 +124,16 @@
         }
 
         /* =========================
-           SLIDER & LAYERS
+           SLIDER CONTAINER
         ========================= */
         .catalog-container {
             position: relative;
+            flex-grow: 1; /* Takes up remaining space between header and footer */
             width: 1040px; 
-            height: 600px;
-            margin-top: -60px; 
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: -20px; /* Pulls up slightly to stay centered */
         }
 
         .main-view-window {
@@ -146,30 +145,6 @@
             overflow: hidden;
             background: #000;
             border-radius: 12px;
-        }
-
-        .thumbnail-window {
-            position: absolute;
-            bottom: 38px; 
-            width: 790px;
-            height: 95px;
-            z-index: 50;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5px;
-        }
-
-        .thumb-placeholder {
-            width: 32%; 
-            height: 85%;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(0, 255, 238, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #00ffee;
-            font-size: 0.8rem;
         }
 
         .catalog-frame {
@@ -184,27 +159,18 @@
             pointer-events: none;
         }
 
-        .nav-hitbox {
-            position: absolute;
-            top: 235px;
-            width: 75px;
-            height: 75px;
-            z-index: 150; 
-            cursor: pointer;
-        }
-        .prev-btn { left: 15px; }
-        .next-btn { right: 15px; }
-
         /* =========================
-           FOOTER
+           FOOTER - Fixed at Bottom
         ========================= */
         footer {
-            margin-top: auto;
-            /* bottom padding increased to 40px to raise the text up one row */
-            padding: 20px 20px 40px 20px;
+            width: 100%;
+            text-align: center;
+            padding-bottom: 15px; /* Adjust this to move the text up/down */
             color: #000000; 
-            font-size: 0.75rem; 
+            font-size: 0.8rem; 
             font-weight: bold;
+            flex-shrink: 0;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -227,9 +193,9 @@
 
         <div class="search-area">
             <div class="category-row">
-                <label class="cat-item"><input type="radio" name="cat" checked> Guitars</label>
-                <label class="cat-item"><input type="radio" name="cat"> Parts</label>
-                <label class="cat-item"><input type="radio" name="cat"> Merch</label>
+                <label class="cat-item"><input type="radio" name="cat" checked> GUITARS</label>
+                <label class="cat-item"><input type="radio" name="cat"> PARTS</label>
+                <label class="cat-item"><input type="radio" name="cat"> MERCH</label>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
@@ -240,17 +206,7 @@
 
     <main class="catalog-container">
         <div class="main-view-window"></div>
-
-        <div class="thumbnail-window">
-            <div class="thumb-placeholder">Part 1</div>
-            <div class="thumb-placeholder">Part 2</div>
-            <div class="thumb-placeholder">Part 3</div>
-        </div>
-
         <div class="catalog-frame"></div>
-
-        <div class="nav-hitbox prev-btn" id="prevBtn"></div>
-        <div class="nav-hitbox next-btn" id="nextBtn"></div>
     </main>
 
     <footer>
