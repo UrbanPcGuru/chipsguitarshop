@@ -56,6 +56,7 @@
 
         /* =========================
            FIXED COLUMN GRID 
+           Prevents right-side drifting
         ========================= */
         .main-container {
             flex: 1;
@@ -68,7 +69,7 @@
 
         .content-grid {
             display: grid;
-            /* Fixed pixel widths prevent drifting on the right side */
+            /* Side columns set to a fixed 280px to lock alignment */
             grid-template-columns: 280px 650px 280px;
             align-items: center;
             justify-items: center;
@@ -77,45 +78,43 @@
         }
 
         /* =========================
-   LOGO POSITIONING & GLOW
-========================= */
-.logo-container {
-    grid-row: span 2;
-    position: relative; /* Needed for the background glow */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Adjust this to move it closer to the Nav bar */
-    margin-top: -80px; 
-    padding-top: 0;
-}
+           LOGO POSITIONING & GLOW
+           Tucked under Nav bar as per image_2e712e.jpg
+        ========================= */
+        .logo-container {
+            grid-row: span 2;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -90px; /* Pulls logo up below Nav bar */
+            padding-top: 0;
+        }
 
-/* Background Glow for the Logo */
-.logo-container::before {
-    content: '';
-    position: absolute;
-    /* Increase size to fit behind the large logo */
-    width: 450px; 
-    height: 450px;
-    border-radius: 50%;
-    z-index: 1;
-    filter: blur(60px);
-    opacity: 0.5;
-    /* Using the same cycleColors keyframes but with a different timing */
-    animation: cycleColors 15s linear infinite;
-    animation-delay: -5s; /* Staggers the start color from the picks */
-}
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            width: 320px; /* Tightened width */
+            height: 320px; /* Tightened height */
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(35px); /* Reduced bleed */
+            opacity: 0.6;
+            animation: cycleColors 15s linear infinite;
+            animation-delay: -5s; /* Offset from picks */
+        }
 
-.logo-container img {
-    position: relative;
-    z-index: 10; /* Keeps the logo above the glow */
-    width: 100%;
-    max-width: 630px;
-    height: auto;
-    display: block;
-}
+        .logo-container img {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 630px;
+            height: auto;
+            display: block;
+        }
+
         /* =========================
-           UNIQUE GLOW COLOR OFFSET
+           PICK IMAGES & INDEPENDENT GLOWS
         ========================= */
         .image-box {
             position: relative;
@@ -138,7 +137,7 @@
             animation: cycleColors 12s linear infinite;
         }
 
-        /* Offset delays so colors never match at the same time */
+        /* Staggered delays so no two images share a color at once */
         .pick-1::before { animation-delay: 0s; }
         .pick-2::before { animation-delay: -3s; }
         .pick-3::before { animation-delay: -6s; }
@@ -180,6 +179,9 @@
             font-size: 1.1rem;
         }
 
+        /* =========================
+           RESPONSIVE MOBILE STACK
+        ========================= */
         @media(max-width: 1250px) {
             .content-grid {
                 grid-template-columns: 1fr;
@@ -207,22 +209,27 @@
     <div class="main-container">
         <div class="content-grid">
             
+            <!-- LEFT TOP -->
             <div class="image-box pick-1">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
 
+            <!-- CENTER LOGO -->
             <div class="logo-container">
                 <img src="./images/hippychipslogo.webp" alt="Logo">
             </div>
 
+            <!-- RIGHT TOP -->
             <div class="image-box pick-2">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
 
+            <!-- LEFT BOTTOM -->
             <div class="image-box pick-3">
                 <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
             </div>
 
+            <!-- RIGHT BOTTOM -->
             <div class="image-box pick-4">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
             </div>
