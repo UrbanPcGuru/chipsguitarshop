@@ -65,7 +65,6 @@
         .main-container {
             flex: 1;
             display: grid;
-            /* Widened side columns to 320px to allow larger picks */
             grid-template-columns: 320px 1fr 320px;
             align-items: center; 
             justify-items: center;
@@ -75,13 +74,13 @@
             padding: 40px 50px 0 50px; 
         }
 
-        /* CENTER LOGO POSITIONING */
+        /* CENTER LOGO POSITIONING 
+           Lifted to -240px to sit closer to the Nav Bar */
         .logo-column {
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Adjusted to -225px to keep it centered in the wall circle */
-            margin-top: -225px; 
+            margin-top: -240px; 
             z-index: 500;
         }
 
@@ -135,8 +134,8 @@
         .image-box::after {
             content: '';
             position: absolute;
-            width: 190px;
-            height: 190px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(30px);
@@ -156,11 +155,11 @@
             100% { background: red; box-shadow: 0 0 20px red; }
         }
 
-        /* ENLARGED PICK IMAGES - Set to 290px */
+        /* PICK IMAGES - Increased by 10px to 300px */
         .image-box img {
             position: relative;
             z-index: 10;
-            width: 290px; 
+            width: 300px; 
             height: auto;
             border-radius: 15px;
             animation: floating 6s ease-in-out infinite;
