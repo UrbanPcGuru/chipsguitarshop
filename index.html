@@ -65,15 +65,15 @@
         .main-container {
             flex: 1;
             display: grid;
-            /* Narrowed side columns from 320px to 280px to bring them inward */
-            grid-template-columns: 280px 1fr 280px;
+            /* Tightened the side columns to 250px to bring picks closer to center */
+            grid-template-columns: 250px 1fr 250px;
             align-items: center; 
             justify-items: center;
             width: 100%;
-            /* Reduced max-width to pull everything toward the center */
-            max-width: 1500px;
+            /* Lowered max-width further to 1300px to squeeze the columns inward */
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 40px 20px 0 20px; 
+            padding: 40px 10px 0 10px; 
         }
 
         /* CENTER LOGO POSITIONING */
@@ -115,7 +115,6 @@
         .picks-column {
             display: flex;
             flex-direction: column;
-            /* Increased gap from 120px to 150px for more vertical space */
             gap: 150px; 
             justify-content: center;
         }
@@ -156,7 +155,7 @@
             100% { background: red; box-shadow: 0 0 20px red; }
         }
 
-        /* PICK IMAGES - Kept at 300px */
+        /* PICK IMAGES - Kept at 300px width */
         .image-box img {
             position: relative;
             z-index: 10;
