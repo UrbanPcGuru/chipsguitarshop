@@ -71,9 +71,9 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            /* Lowered slightly from -180px for better centering */
-            margin-top: -165px; 
-            margin-bottom: 25px;
+            /* Lowered from -165px to -140px to sit better in the sphere */
+            margin-top: -140px; 
+            margin-bottom: 35px;
         }
 
         .logo-container {
@@ -83,15 +83,15 @@
             align-items: center;
         }
 
-        /* ULTRA-TIGHT GLOW: 4px past 630px border */
+        /* TIGHT GLOW: 4px past 630px border */
         .logo-container::before {
             content: '';
             position: absolute;
-            width: 638px; /* 630px + 4px padding on each side */
+            width: 638px; 
             height: 638px; 
             border-radius: 50%;
             z-index: 1;
-            filter: blur(8px); /* Sharper edge for the tighter glow */
+            filter: blur(8px); 
             opacity: 0.65;
             animation: cycleColors 15s linear infinite;
             animation-delay: -5s; 
