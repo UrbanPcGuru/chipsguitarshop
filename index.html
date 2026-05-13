@@ -65,11 +65,12 @@
         .main-container {
             flex: 1;
             display: grid;
-            grid-template-columns: 280px 1fr 280px;
+            /* Widened side columns to 320px to allow larger picks */
+            grid-template-columns: 320px 1fr 320px;
             align-items: center; 
             justify-items: center;
             width: 100%;
-            max-width: 1600px;
+            max-width: 1800px;
             margin: 0 auto;
             padding: 40px 50px 0 50px; 
         }
@@ -79,7 +80,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: -200px; 
+            /* Adjusted to -225px to keep it centered in the wall circle */
+            margin-top: -225px; 
             z-index: 500;
         }
 
@@ -129,15 +131,15 @@
             transform: scale(1.1);
         }
 
-        /* PICK GLOWS - Resized to 160px (approx 15% increase) */
+        /* ENLARGED PICK GLOWS */
         .image-box::after {
             content: '';
             position: absolute;
-            width: 160px;
-            height: 160px;
+            width: 190px;
+            height: 190px;
             border-radius: 50%;
             z-index: 1; 
-            filter: blur(25px);
+            filter: blur(30px);
             opacity: 0.7;
             animation: cyclePickGlow 8s linear infinite;
         }
@@ -154,11 +156,11 @@
             100% { background: red; box-shadow: 0 0 20px red; }
         }
 
-        /* PICK IMAGES - Resized to 253px (15% bigger than 220px) */
+        /* ENLARGED PICK IMAGES - Set to 290px */
         .image-box img {
             position: relative;
             z-index: 10;
-            width: 253px; 
+            width: 290px; 
             height: auto;
             border-radius: 15px;
             animation: floating 6s ease-in-out infinite;
