@@ -16,7 +16,6 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* Match exact filename from image_2ad93c.jpg: shopbackground.webp */
             background: #000 url('images/shopbackground.webp') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -35,22 +34,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
+            padding: 20px 40px;
             z-index: 1000;
         }
 
+        /* Logo made bigger */
         .logo-small img {
-            width: 70px;
+            width: 120px; 
             height: auto;
         }
 
+        /* Container centered specifically around search/categories */
         .search-area {
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             gap: 10px;
+            background: rgba(45, 30, 20, 0.85); /* Dark brown/black container */
+            padding: 15px 25px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .category-row {
@@ -65,12 +69,13 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
+            font-size: 0.9rem;
         }
 
         .cat-item input[type="radio"] {
             accent-color: #00ffee;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
         }
 
         .search-bar {
@@ -79,16 +84,16 @@
         }
 
         .search-bar input {
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.6);
             color: white;
-            width: 250px;
+            width: 200px;
         }
 
         .search-bar button {
-            padding: 10px 20px;
+            padding: 8px 15px;
             background: #00ffee;
             border: none;
             border-radius: 4px;
@@ -104,13 +109,12 @@
             position: relative;
             width: 1040px; 
             height: 600px;
-            margin-top: 50px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* MAIN PRODUCT WINDOW (Behind the frame) */
         .main-view-window {
             position: absolute;
             top: 55px;   
@@ -122,7 +126,6 @@
             border-radius: 12px;
         }
 
-        /* LOWER GALLERY WINDOW (Behind the frame) */
         .thumbnail-window {
             position: absolute;
             bottom: 38px; 
@@ -147,7 +150,6 @@
             font-size: 0.8rem;
         }
 
-        /* THE FRAME (Top layer) */
         .catalog-frame {
             position: absolute;
             top: 0;
@@ -160,7 +162,6 @@
             pointer-events: none;
         }
 
-        /* NAVIGATION TARGETS (Positioned over dials) */
         .nav-hitbox {
             position: absolute;
             top: 235px;
@@ -172,10 +173,14 @@
         .prev-btn { left: 15px; }
         .next-btn { right: 15px; }
 
+        /* =========================
+           FOOTER - Smaller & Black
+        ========================= */
         footer {
             margin-top: auto;
-            padding: 30px;
-            color: #00ffee;
+            padding: 20px;
+            color: #000000; 
+            font-size: 0.75rem; 
             font-weight: bold;
         }
     </style>
@@ -185,7 +190,6 @@
     <header>
         <div class="logo-small">
             <a href="index.html">
-                <!-- Match filename: hippychipslogo.webp -->
                 <img src="images/hippychipslogo.webp" alt="Logo">
             </a>
         </div>
@@ -197,31 +201,27 @@
                 <label class="cat-item"><input type="radio" name="cat"> Merch</label>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Search components...">
+                <input type="text" placeholder="Search...">
                 <button type="button">GO</button>
             </div>
         </div>
     </header>
 
     <main class="catalog-container">
-        <!-- Center Product Display -->
         <div class="main-view-window">
             <img src="images/guitar-repair.webp" style="width:100%; height:100%; object-fit:cover;" alt="Current Selection">
         </div>
 
-        <!-- Lower Data Feed Display -->
         <div class="thumbnail-window">
             <div class="thumb-placeholder">Part 1</div>
             <div class="thumb-placeholder">Part 2</div>
-            <div class="thumb-placeholder) ">Part 3</div>
+            <div class="thumb-placeholder">Part 3</div>
         </div>
 
-        <!-- Frame Overlay -->
         <div class="catalog-frame"></div>
 
-        <!-- Hidden Nav Hitboxes -->
-        <div class="nav-hitbox prev-btn" id="prevBtn" title="Previous"></div>
-        <div class="nav-hitbox next-btn" id="nextBtn" title="Next"></div>
+        <div class="nav-hitbox prev-btn" id="prevBtn"></div>
+        <div class="nav-hitbox next-btn" id="nextBtn"></div>
     </main>
 
     <footer>
