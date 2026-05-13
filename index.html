@@ -70,13 +70,13 @@
         }
 
         /* CENTER LOGO POSITIONING 
-           Increased size and lifted significantly for image_2d0491.jpg */
+           Shifted higher to fit the circular wall feature exactly */
         .logo-column {
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Negative margin pulls the logo UP into the wooden circle */
-            margin-top: -220px; 
+            /* Lifted from -220px to -280px for perfect placement */
+            margin-top: -280px; 
             z-index: 500;
         }
 
@@ -87,24 +87,25 @@
             align-items: center;
         }
 
-        /* NEW LOGO GLOW - Using drop-shadow for better visibility */
+        /* LOGO & DYNAMIC GLOW */
         .logo-container img {
             position: relative;
             z-index: 10;
-            max-width: 820px; /* Bigger size to fit the wall circle */
+            max-width: 820px; 
             width: 100%;
             height: auto; 
             display: block;
+            /* Drop-shadow is used here to ensure the glow works with the logo transparency */
             animation: cycleLogoGlow 10s linear infinite;
         }
 
         @keyframes cycleLogoGlow {
-            0%   { filter: drop-shadow(0 0 10px red); }
-            20%  { filter: drop-shadow(0 0 10px yellow); }
-            40%  { filter: drop-shadow(0 0 10px green); }
-            60%  { filter: drop-shadow(0 0 10px cyan); }
-            80%  { filter: drop-shadow(0 0 10px blue); }
-            100% { filter: drop-shadow(0 0 10px red); }
+            0%   { filter: drop-shadow(0 0 12px red); }
+            20%  { filter: drop-shadow(0 0 12px yellow); }
+            40%  { filter: drop-shadow(0 0 12px green); }
+            60%  { filter: drop-shadow(0 0 12px cyan); }
+            80%  { filter: drop-shadow(0 0 12px blue); }
+            100% { filter: drop-shadow(0 0 12px red); }
         }
 
         /* PICKS COLUMNS */
@@ -127,7 +128,7 @@
             transform: scale(1.1);
         }
 
-        /* PICK GLOWS */
+        /* PICK GLOWS (Restored Auras) */
         .image-box::after {
             content: '';
             position: absolute;
@@ -166,6 +167,7 @@
             50% { transform: translateY(-15px); }
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
             padding: 30px 0;
