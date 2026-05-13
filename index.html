@@ -80,55 +80,87 @@
         }
 
         /* =========================
-           IMAGE BOX & STARBURST GLOW
+           IMAGE BOX & INDEPENDENT COLOR GLOW
         ========================= */
         .image-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            /* No overflow:hidden to allow light to leak out */
+            padding: 50px;
         }
 
-        /* The 6-Color Starburst Glow (Behind Image) */
         .image-box::before {
             content: '';
             position: absolute;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, 
-                rgba(255,0,0,0.8) 0%, 
-                rgba(255,255,0,0.6) 20%, 
-                rgba(0,255,0,0.5) 40%, 
-                rgba(0,255,255,0.4) 60%, 
-                rgba(0,0,255,0.3) 80%, 
-                transparent 100%
-            );
-            filter: blur(40px);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
             z-index: 1; 
-            opacity: 0.7;
+            box-shadow: 
+                -40px -40px 70px 15px rgba(255, 0, 0, 0.6),
+                40px -40px 70px 15px rgba(0, 255, 0, 0.6),
+                0px 40px 70px 15px rgba(0, 0, 255, 0.6);
+            filter: blur(30px);
+            opacity: 0.8;
+            animation: shiftColors 12s ease-in-out infinite;
             transition: all 0.5s ease-in-out;
-            animation: pulseGlow 4s infinite alternate;
         }
 
-        /* Hover: Turn Bright Green and Grow */
         .image-box:hover::before {
-            background: radial-gradient(circle, 
-                rgba(0, 255, 0, 1) 0%, 
-                rgba(0, 255, 0, 0.6) 50%, 
-                transparent 100%
-            );
-            width: 350px;
-            height: 350px;
+            box-shadow: 0 0 100px 40px rgba(0, 255, 0, 1);
+            background: rgba(0, 255, 0, 0.4);
             filter: blur(50px);
+            animation: none;
+            width: 220px;
+            height: 220px;
             opacity: 1;
-            animation: none; /* Stops pulsing to stay solid green */
         }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.2); opacity: 0.9; }
+        /* LOGO SPECIFIC SCALING */
+        .logo-container img {
+            max-width: 900px !important; /* 3x bigger than the 300px-320px picks */
+        }
+
+        .logo-container::before {
+            width: 400px; /* Larger glow for the larger image */
+            height: 400px;
+        }
+
+        .logo-container:hover::before {
+            width: 500px;
+            height: 500px;
+        }
+
+        @keyframes shiftColors {
+            0% {
+                box-shadow: 
+                    -40px -40px 70px 15px rgba(255, 0, 0, 0.7),
+                    40px -40px 70px 15px rgba(0, 255, 0, 0.7),
+                    0px 40px 70px 15px rgba(0, 0, 255, 0.7);
+                transform: rotate(0deg) scale(1);
+            }
+            33% {
+                box-shadow: 
+                    40px 20px 80px 20px rgba(255, 255, 0, 0.7),
+                    -40px 40px 80px 20px rgba(255, 0, 255, 0.7),
+                    0px -60px 80px 20px rgba(0, 255, 255, 0.7);
+                transform: rotate(120deg) scale(1.1);
+            }
+            66% {
+                box-shadow: 
+                    0px -50px 90px 25px rgba(0, 255, 0, 0.7),
+                    60px 60px 90px 25px rgba(255, 0, 0, 0.7),
+                    -60px 60px 90px 25px rgba(0, 0, 255, 0.7);
+                transform: rotate(240deg) scale(0.9);
+            }
+            100% {
+                box-shadow: 
+                    -40px -40px 70px 15px rgba(255, 0, 0, 0.7),
+                    40px -40px 70px 15px rgba(0, 255, 0, 0.7),
+                    0px 40px 70px 15px rgba(0, 0, 255, 0.7);
+                transform: rotate(360deg) scale(1);
+            }
         }
 
         /* =========================
@@ -136,23 +168,23 @@
         ========================= */
         .image-box img {
             position: relative;
-            z-index: 2; /* Ensures image stays in front of light */
+            z-index: 2; 
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             border-radius: 20px;
             background: transparent;
             border: none;
-            animation: float 5s ease-in-out infinite;
-            transition: transform 0.4s ease-in-out;
+            animation: floatingPick 6s ease-in-out infinite;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .image-box:hover img {
-            transform: scale(1.15); /* Gets larger on hover */
+            transform: scale(1.1);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        @keyframes floatingPick {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(3deg); }
         }
 
         /* =========================
@@ -170,16 +202,15 @@
         }
 
         /* =========================
-           MOBILE RESPONSIVENESS
+           MOBILE
         ========================= */
         @media(max-width: 1000px) {
             .main-grid, .second-row {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 70px;
             }
-            .navbar {
-                flex-wrap: wrap;
-                gap: 20px;
+            .logo-container img {
+                max-width: 80% !important;
             }
         }
     </style>
@@ -197,18 +228,21 @@
         </nav>
     </div>
 
-    <!-- FIRST ROW -->
+    <!-- MAIN GRID (ROW 1) -->
     <section class="main-grid">
+        <!-- Pick 1 -->
         <div class="image-box">
             <a href="index.html">
                 <img src="images/guitarshop.webp" alt="Guitar Shop">
             </a>
         </div>
 
-        <div class="image-box logo-box">
+        <!-- CENTER LOGO (3X BIGGER) -->
+        <div class="image-box logo-container">
             <img src="images/hippychipslogo.webp" alt="Hippy Chip's Guitar Shop Logo">
         </div>
 
+        <!-- Pick 2 -->
         <div class="image-box">
             <a href="forums.html">
                 <img src="images/guitarforums.webp" alt="Guitar Forums">
@@ -218,20 +252,22 @@
 
     <!-- SECOND ROW -->
     <section class="second-row">
+        <!-- Pick 3 -->
         <div class="image-box">
             <a href="services.html">
                 <img src="images/guitar-repair.webp" alt="Guitar Repair Services">
             </a>
         </div>
 
+        <!-- Empty Middle -->
+        <div></div>
+
+        <!-- Pick 4 (Third Column) -->
         <div class="image-box">
             <a href="priors.html">
                 <img src="images/priorprojects.webp" alt="Prior Projects">
             </a>
         </div>
-
-        <!-- Spacer for 3-column layout alignment -->
-        <div></div>
     </section>
 
     <!-- FOOTER -->
