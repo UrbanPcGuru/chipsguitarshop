@@ -69,13 +69,12 @@
             padding: 0 50px;
         }
 
-        /* LOGO COLUMN (Center) */
+        /* CENTER LOGO POSITIONING */
         .logo-column {
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Lowered further as requested */
-            margin-top: 20px; 
+            margin-top: 40px; /* Adjusted to sit in the frame */
         }
 
         .logo-container {
@@ -83,37 +82,42 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 630px;
-            height: 630px;
         }
 
-        //* TIGHT ANIMATED GLOW - Strictly 4px past logo edge */
-.logo-container::before {
-    content: '';
-    position: absolute;
-    /* This ensures the element is exactly the size of the logo */
-    width: 630px; 
-    height: 630px;
-    border-radius: 50%;
-    z-index: 1;
-    /* Small blur to keep the glow crisp, not a huge blob */
-    filter: blur(4px); 
-    /* Link to the color-changing animation */
-    animation: cycleLogoGlow 10s linear infinite;
-}
+        /* RE-DONE GLOW: No background color, tight border glow */
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            /* Using percentages to stay tight to the image regardless of size */
+            width: 98%; 
+            height: 98%;
+            border-radius: 50%;
+            z-index: 1;
+            filter: blur(5px);
+            animation: cycleLogoGlow 10s linear infinite;
+        }
 
-/* CYCLING RADIUS GLOW - Changes colors while staying small */
-@keyframes cycleLogoGlow {
-    0%   { box-shadow: 0 0 8px red; }
-    20%  { box-shadow: 0 0 8px yellow; }
-    40%  { box-shadow: 0 0 8px green; }
-    60%  { box-shadow: 0 0 8px cyan; }
-    80%  { box-shadow: 0 0 8px blue; }
-    100% { box-shadow: 0 0 8px red; }
-}
-        
+        /* RESTORED LOGO: No forced dimensions to prevent stretching */
+        .logo-container img {
+            position: relative;
+            z-index: 10;
+            max-width: 430px; 
+            width: 100%;
+            height: auto; /* Restores original aspect ratio */
+            display: block;
+        }
 
-        /* PICKS COLUMNS (Left & Right) */
+        /* CYCLING GLOW - Border only */
+        @keyframes cycleLogoGlow {
+            0%   { box-shadow: 0 0 10px red; }
+            20%  { box-shadow: 0 0 10px yellow; }
+            40%  { box-shadow: 0 0 10px green; }
+            60%  { box-shadow: 0 0 10px cyan; }
+            80%  { box-shadow: 0 0 10px blue; }
+            100% { box-shadow: 0 0 10px red; }
+        }
+
+        /* PICKS COLUMNS */
         .picks-column {
             display: flex;
             flex-direction: column;
@@ -133,7 +137,6 @@
             transform: scale(1.1);
         }
 
-        /* RESTORED PICK GLOWS */
         .image-box::after {
             content: '';
             position: absolute;
@@ -146,7 +149,6 @@
             animation: cyclePickGlow 8s linear infinite;
         }
 
-        /* Offsets for variety */
         .pick-1::after { animation-delay: 0s; }
         .pick-2::after { animation-delay: -2s; }
         .pick-3::after { animation-delay: -4s; }
@@ -173,7 +175,6 @@
             50% { transform: translateY(-15px); }
         }
 
-        /* FOOTER */
         footer {
             text-align: center;
             padding: 30px 0;
@@ -197,7 +198,6 @@
 
     <div class="main-container">
         
-        <!-- LEFT PICKS -->
         <div class="picks-column">
             <div class="image-box pick-1">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
@@ -207,14 +207,12 @@
             </div>
         </div>
 
-        <!-- CENTER LOGO -->
         <div class="logo-column">
             <div class="logo-container">
                 <img src="./images/hippychipslogo.webp" alt="Logo">
             </div>
         </div>
 
-        <!-- RIGHT PICKS -->
         <div class="picks-column">
             <div class="image-box pick-3">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
