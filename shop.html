@@ -16,16 +16,12 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            /* Using services-background.webp as requested */
             background: url('./images/services-background.webp') center center/cover no-repeat fixed;
             min-height: 100vh;
             color: white;
             overflow-x: hidden;
         }
 
-        /* =========================
-           HEADER & SEARCH SECTION
-        ========================= */
         header {
             display: flex;
             justify-content: space-between;
@@ -33,11 +29,8 @@
             padding: 20px 50px;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
-        }
-
-        .logo-small img {
-            width: 150px;
-            height: auto;
+            z-index: 2000;
+            position: relative;
         }
 
         /* SEARCH CONTROLS (Top Right) */
@@ -48,7 +41,6 @@
             gap: 10px;
         }
 
-        /* Category Row with Bullets */
         .category-row {
             display: flex;
             gap: 20px;
@@ -62,15 +54,12 @@
             cursor: pointer;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* Custom Radio Style (The Bullet) */
         .cat-item input[type="radio"] {
-            accent-color: #00ffee; /* Cyan bullet to match your theme */
+            accent-color: #00ffee;
             width: 18px;
             height: 18px;
-            cursor: pointer;
         }
 
         .search-bar {
@@ -95,16 +84,10 @@
             color: black;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .search-bar button:hover {
-            background: #00aaff;
-            box-shadow: 0 0 15px #00ffee;
         }
 
         /* =========================
-           SLIDER SECTION
+           SLIDER & HIDDEN LOGO AREA
         ========================= */
         .slider-section {
             display: flex;
@@ -112,30 +95,48 @@
             align-items: center;
             margin-top: 50px;
             position: relative;
+            height: 600px;
         }
 
-        /* The Frame (slider.webp) */
+        /* THE HIDDEN LOGO 
+           Positioned absolutely behind the frame */
+        .logo-hidden {
+            position: absolute;
+            z-index: 5; /* Lower than the frame */
+            width: 400px;
+            height: auto;
+            opacity: 1; 
+        }
+
+        .logo-hidden img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 238, 0.5));
+        }
+
+        /* THE FRAME (slider.webp)
+           This sits ON TOP of the logo */
         .slider-frame {
             position: relative;
-            width: 900px; /* Adjust based on your slider.webp dimensions */
+            width: 900px; 
             height: 500px;
             background: url('./images/slider.webp') center center/contain no-repeat;
-            z-index: 10;
-            pointer-events: none; /* Allows clicking through frame to slides */
+            z-index: 100; /* Higher than the logo */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* The Content inside the frame */
+        /* THE SLIDER CONTENT
+           Sits inside the frame aperture */
         .slider-content {
             position: absolute;
-            width: 820px; /* Sized to fit inside the frame opening */
+            width: 820px; 
             height: 420px;
-            z-index: 5;
+            z-index: 50; /* Between the hidden logo and the frame overlay */
             overflow: hidden;
             border-radius: 10px;
-            background: #111;
+            background: #000;
         }
 
         .slides {
@@ -148,9 +149,6 @@
         .slide {
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .slide img {
@@ -177,12 +175,11 @@
 <body>
 
     <header>
-        <div class="logo-small">
-            <a href="index.html"><img src="./images/hippychipslogo.webp" alt="Logo"></a>
+        <div class="nav-links">
+            <!-- Space reserved for your nav if needed -->
         </div>
 
         <div class="search-container">
-            <!-- Category choices with Bullet (Radio) logic -->
             <div class="category-row">
                 <label class="cat-item">
                     <input type="radio" name="shop-cat" value="guitars" checked> Guitars
@@ -204,16 +201,24 @@
 
     <main>
         <section class="slider-section">
-            <!-- The physical frame asset overlaying the slider -->
+            
+            <!-- LOGO BEHIND EVERYTHING -->
+            <div class="logo-hidden">
+                <img src="./images/hippychipslogo.webp" alt="Background Logo">
+            </div>
+
+            <!-- FRAME ON TOP -->
             <div class="slider-frame">
+                <!-- Content sits inside the 'window' of your slider.webp -->
                 <div class="slider-content">
                     <div class="slides">
-                        <div class="slide"><img src="./images/guitar-1.webp" alt="Featured Guitar 1"></div>
-                        <div class="slide"><img src="./images/guitar-2.webp" alt="Featured Guitar 2"></div>
-                        <div class="slide"><img src="./images/guitar-3.webp" alt="Featured Guitar 3"></div>
+                        <div class="slide"><img src="./images/guitar-1.webp" alt="Inventory 1"></div>
+                        <div class="slide"><img src="./images/guitar-2.webp" alt="Inventory 2"></div>
+                        <div class="slide"><img src="./images/guitar-3.webp" alt="Inventory 3"></div>
                     </div>
                 </div>
             </div>
+
         </section>
     </main>
 
