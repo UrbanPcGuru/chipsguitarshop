@@ -69,12 +69,14 @@
             padding: 0 50px;
         }
 
-        /* CENTER LOGO POSITIONING */
+        /* CENTER LOGO POSITIONING 
+           Adjusted to fit the wall circle in image_2d08d1.jpg */
         .logo-column {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 60px; /* Adjusted to sit in the frame */
+            /* Negative margin pulls the logo UP into the circle */
+            margin-top: -120px; 
         }
 
         .logo-container {
@@ -84,37 +86,35 @@
             align-items: center;
         }
 
-        /* RE-DONE GLOW: No background color, tight border glow */
+        /* TIGHT GLOW - Scales with the new larger logo size */
         .logo-container::before {
             content: '';
             position: absolute;
-            /* Using percentages to stay tight to the image regardless of size */
-            width: 98%; 
-            height: 98%;
+            width: 99%; 
+            height: 99%;
             border-radius: 50%;
             z-index: 1;
-            filter: blur(5px);
+            filter: blur(6px);
             animation: cycleLogoGlow 10s linear infinite;
         }
 
-        /* RESTORED LOGO: No forced dimensions to prevent stretching */
+        /* ENLARGED LOGO - Set to 680px to fill the wall placement */
         .logo-container img {
             position: relative;
             z-index: 10;
-            max-width: 530px; 
-            width: 70%;
-            height: auto; /* Restores original aspect ratio */
+            max-width: 680px; 
+            width: 100%;
+            height: auto; 
             display: block;
         }
 
-        /* CYCLING GLOW - Border only */
         @keyframes cycleLogoGlow {
-            0%   { box-shadow: 0 0 10px red; }
-            20%  { box-shadow: 0 0 10px yellow; }
-            40%  { box-shadow: 0 0 10px green; }
-            60%  { box-shadow: 0 0 10px cyan; }
-            80%  { box-shadow: 0 0 10px blue; }
-            100% { box-shadow: 0 0 10px red; }
+            0%   { box-shadow: 0 0 12px red; }
+            20%  { box-shadow: 0 0 12px yellow; }
+            40%  { box-shadow: 0 0 12px green; }
+            60%  { box-shadow: 0 0 12px cyan; }
+            80%  { box-shadow: 0 0 12px blue; }
+            100% { box-shadow: 0 0 12px red; }
         }
 
         /* PICKS COLUMNS */
@@ -137,6 +137,7 @@
             transform: scale(1.1);
         }
 
+        /* PICK GLOWS */
         .image-box::after {
             content: '';
             position: absolute;
