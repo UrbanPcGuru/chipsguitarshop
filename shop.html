@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hippy Chip's Guitar Shop - Component Catalog</title>
+    <title>Hippy Chip's Guitar Shop - Inventory</title>
     <style>
         /* =========================
-           GLOBAL SETUP & BACKGROUND
+           GLOBAL & BACKGROUND
         ========================= */
         * {
             margin: 0;
@@ -16,28 +16,34 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            /* Applying requested background */
-            background: url('./images/shop background.webp') center center/cover no-repeat fixed;
+            /* Wrap path in quotes to handle the space in your filename */
+            background: #111 url('./images/shop background.webp') center center/cover no-repeat fixed;
             min-height: 100vh;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: white;
             overflow-x: hidden;
         }
 
         /* =========================
-           HEADER & SEARCH
+           HEADER & SEARCH AREA
         ========================= */
         header {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            position: relative;
+            z-index: 2000;
+        }
+
+        .logo-small img {
+            width: 75px;
+            height: auto;
         }
 
         .search-area {
@@ -49,22 +55,26 @@
 
         .category-row {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .cat-item {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 1rem;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
+            color: white;
         }
 
+        /* The Radio Bullets */
         .cat-item input[type="radio"] {
             accent-color: #00ffee;
             width: 18px;
             height: 18px;
+            cursor: pointer;
         }
 
         .search-bar {
@@ -73,12 +83,12 @@
         }
 
         .search-bar input {
-            padding: 10px 15px;
+            padding: 12px 15px;
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            width: 250px;
+            width: 280px;
         }
 
         .search-bar button {
@@ -89,60 +99,64 @@
             color: black;
             font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #00aaff;
+            box-shadow: 0 0 15px #00ffee;
         }
 
         /* =========================
-           DYNAMIC SLIDER WRAPPER
+           DYNAMIC SLIDER LAYERING
         ========================= */
         .catalog-container {
             position: relative;
             width: 1040px; 
             height: 600px;
-            margin-top: 50px;
+            margin-top: 60px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
 
-        /* THE PHYSICAL FRAME OVERLAY (slider.jpg / slider.png) */
-        .catalog-frame {
+        /* 1. THE LOGO UNDERLAY (Hidden behind frame) */
+        .logo-hidden {
             position: absolute;
-            top: 0;
-            left: 0;
+            z-index: 10;
+            width: 400px;
+            opacity: 1;
+        }
+        .logo-hidden img {
             width: 100%;
-            height: 100%;
-            /* Frame sits on top of everything */
-            background: url('./images/slider.png') center no-repeat;
-            background-size: contain;
-            z-index: 100; 
-            pointer-events: none;
+            height: auto;
         }
 
-        /* MAIN PRODUCT DISPLAY (Behind the top window) */
+        /* 2. MAIN WINDOW (Center Slot) */
         .main-view-window {
             position: absolute;
             top: 55px;   
             width: 880px;
             height: 380px;
-            z-index: 50;
+            z-index: 50; /* Middle Layer */
             overflow: hidden;
             background: #000;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
-        .main-product-placeholder {
+        .main-product-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* LOWER GALLERY (Behind the bottom thumbnails) */
+        /* 3. THUMBNAIL WINDOW (Lower Slot) */
         .thumbnail-window {
             position: absolute;
             bottom: 38px; 
             width: 790px;
             height: 95px;
-            z-index: 50;
+            z-index: 50; /* Middle Layer */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -151,8 +165,8 @@
 
         .thumb-placeholder {
             width: 32%; 
-            height: 85%;
-            background: rgba(0, 0, 0, 0.6);
+            height: 90%;
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(0, 255, 238, 0.1);
             display: flex;
             flex-direction: column;
@@ -163,23 +177,36 @@
             text-transform: uppercase;
         }
 
-        /* INTERACTIVE OVERLAYS */
+        /* 4. THE FRAME OVERLAY (Top Layer) */
+        /* Must use slider.png (transparent center) to show content behind it */
+        .catalog-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./images/slider.png') center no-repeat;
+            background-size: contain;
+            z-index: 100; 
+            pointer-events: none; /* Click through frame to nav buttons */
+        }
+
+        /* 5. NAV CONTROLS */
         .nav-hitbox {
             position: absolute;
-            top: 240px;
-            width: 70px;
-            height: 70px;
+            top: 235px;
+            width: 75px;
+            height: 75px;
             z-index: 150; 
             cursor: pointer;
             border-radius: 50%;
-            transition: background 0.3s;
         }
-        .nav-hitbox:hover {
-            background: rgba(0, 255, 238, 0.1);
-        }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
 
+        /* =========================
+           FOOTER
+        ========================= */
         footer {
             margin-top: auto;
             padding: 40px;
@@ -194,7 +221,7 @@
     <header>
         <div class="logo-small">
             <a href="index.html">
-                <img src="./images/hippychipslogo.webp" alt="Logo" style="width: 80px; height: auto;">
+                <img src="./images/hippychipslogo.webp" alt="Hippy Chips Logo">
             </a>
         </div>
 
@@ -212,39 +239,38 @@
             </div>
 
             <div class="search-bar">
-                <input type="text" placeholder="Search components...">
+                <input type="text" placeholder="Search the shop...">
                 <button type="submit">GO</button>
             </div>
         </div>
     </header>
 
     <main class="catalog-container">
-        <!-- 1. The Dynamic Data Layers (Behind) -->
+        
+        <!-- Logo tucked behind frame at the bottom of the stack -->
+        <div class="logo-hidden">
+            <img src="./images/hippychipslogo.webp" alt="Underlay Logo">
+        </div>
+
+        <!-- Main Product Window -->
         <div class="main-view-window">
-            <img src="./images/placeholder-main-bridge.webp" class="main-product-placeholder" alt="Main View">
+            <img src="./images/guitar-1.webp" class="main-product-img" id="mainImage" alt="Main Inventory Item">
         </div>
 
-        <div class="thumbnail-window">
-            <div class="thumb-placeholder">
-                <span>Part A</span>
-                <small>In Stock</small>
-            </div>
-            <div class="thumb-placeholder">
-                <span>Part B</span>
-                <small>Custom Built</small>
-            </div>
-            <div class="thumb-placeholder">
-                <span>Part C</span>
-                <small>Aged Copper</small>
-            </div>
+        <!-- Lower Thumbnail Window for database feed -->
+        <div class="thumbnail-window" id="thumbContainer">
+            <div class="thumb-placeholder"><span>Product Slot 1</span></div>
+            <div class="thumb-placeholder"><span>Active Selection</span></div>
+            <div class="thumb-placeholder"><span>Product Slot 3</span></div>
         </div>
 
-        <!-- 2. The Transparent Frame (On Top) -->
+        <!-- Top Frame Layer -->
         <div class="catalog-frame"></div>
 
-        <!-- 3. Invisible Clickable Nav Areas (Positioned over the dials) -->
-        <div class="nav-hitbox prev-btn" title="Previous Item"></div>
-        <div class="nav-hitbox next-btn" title="Next Item"></div>
+        <!-- Nav Targets (Positioned over the dials in your graphic) -->
+        <div class="nav-hitbox prev-btn" id="prevBtn" title="Previous"></div>
+        <div class="nav-hitbox next-btn" id="nextBtn" title="Next"></div>
+
     </main>
 
     <footer>
@@ -252,16 +278,14 @@
     </footer>
 
     <script>
-        // Placeholders for your database logic
-        function prevProduct() {
-            console.log("Loading previous product from database...");
-        }
-        function nextProduct() {
-            console.log("Loading next product from database...");
-        }
+        // Placeholder for Database Integration
+        document.getElementById('prevBtn').onclick = function() {
+            console.log("Database Hook: Load Previous Item");
+        };
 
-        document.querySelector('.prev-btn').addEventListener('click', prevProduct);
-        document.querySelector('.next-btn').addEventListener('click', nextProduct);
+        document.getElementById('nextBtn').onclick = function() {
+            console.log("Database Hook: Load Next Item");
+        };
     </script>
 
 </body>
