@@ -56,7 +56,6 @@
 
         /* =========================
            FIXED COLUMN GRID 
-           Locks vertical alignment for picks
         ========================= */
         .main-container {
             flex: 1;
@@ -69,7 +68,7 @@
 
         .content-grid {
             display: grid;
-            /* Side columns set to a fixed 280px to prevent drifting */
+            /* Fixed pixel widths prevent drifting on the right side */
             grid-template-columns: 280px 650px 280px;
             align-items: center;
             justify-items: center;
@@ -78,11 +77,12 @@
         }
 
         /* =========================
-           LOGO POSITIONING
+           LOGO POSITIONING (Raised)
         ========================= */
         .logo-container {
             grid-row: span 2; 
-            margin-top: 85px; /* Aligns with the circular wall feature */
+            /* Reduced margin to raise the logo into the background sphere */
+            margin-top: 20px; 
         }
 
         .logo-container img {
@@ -94,7 +94,6 @@
 
         /* =========================
            UNIQUE GLOW COLOR OFFSET
-           Ensures no two picks share a color
         ========================= */
         .image-box {
             position: relative;
@@ -117,7 +116,7 @@
             animation: cycleColors 12s linear infinite;
         }
 
-        /* 12s total / 4 picks = 3s offset for zero color overlap */
+        /* Offset delays so colors never match at the same time */
         .pick-1::before { animation-delay: 0s; }
         .pick-2::before { animation-delay: -3s; }
         .pick-3::before { animation-delay: -6s; }
@@ -148,7 +147,7 @@
         }
 
         /* =========================
-           FOOTER (CENTERED BOTTOM)
+           FOOTER
         ========================= */
         footer {
             text-align: center;
@@ -159,9 +158,6 @@
             font-size: 1.1rem;
         }
 
-        /* =========================
-           MOBILE RESPONSIVENESS
-        ========================= */
         @media(max-width: 1250px) {
             .content-grid {
                 grid-template-columns: 1fr;
@@ -189,27 +185,22 @@
     <div class="main-container">
         <div class="content-grid">
             
-            <!-- LEFT TOP -->
             <div class="image-box pick-1">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
 
-            <!-- CENTER LOGO -->
             <div class="logo-container">
                 <img src="./images/hippychipslogo.webp" alt="Logo">
             </div>
 
-            <!-- RIGHT TOP -->
             <div class="image-box pick-2">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
 
-            <!-- LEFT BOTTOM -->
             <div class="image-box pick-3">
                 <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
             </div>
 
-            <!-- RIGHT BOTTOM (Locked and Vertically Aligned) -->
             <div class="image-box pick-4">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
             </div>
