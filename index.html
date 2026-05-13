@@ -87,34 +87,31 @@
             height: 630px;
         }
 
-        /* TIGHT ANIMATED GLOW - 4px Limit */
-        .logo-container::before {
-            content: '';
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            border-radius: 50%;
-            z-index: 1;
-            /* Ensuring blur doesn't make it look "huge" like in image_2d26d1.jpg */
-            filter: blur(5px);
-            animation: cycleLogoGlow 10s linear infinite;
-        }
+        //* TIGHT ANIMATED GLOW - Strictly 4px past logo edge */
+.logo-container::before {
+    content: '';
+    position: absolute;
+    /* This ensures the element is exactly the size of the logo */
+    width: 630px; 
+    height: 630px;
+    border-radius: 50%;
+    z-index: 1;
+    /* Small blur to keep the glow crisp, not a huge blob */
+    filter: blur(4px); 
+    /* Link to the color-changing animation */
+    animation: cycleLogoGlow 10s linear infinite;
+}
 
-        .logo-container img {
-            position: relative;
-            z-index: 10;
-            width: 630px;
-            height: 630px;
-            display: block;
-        }
-
-        @keyframes cycleLogoGlow {
-            0%   { box-shadow: 0 0 10px red; background: rgba(255, 0, 0, 0.2); }
-            20%  { box-shadow: 0 0 10px yellow; background: rgba(255, 255, 0, 0.2); }
-            40%  { box-shadow: 0 0 10px green; background: rgba(0, 255, 0, 0.2); }
-            60%  { box-shadow: 0 0 10px cyan; background: rgba(0, 255, 255, 0.2); }
-            80%  { box-shadow: 0 0 10px blue; background: rgba(0, 0, 255, 0.2); }
-            100% { box-shadow: 0 0 10px red; background: rgba(255, 0, 0, 0.2); }
-        }
+/* CYCLING RADIUS GLOW - Changes colors while staying small */
+@keyframes cycleLogoGlow {
+    0%   { box-shadow: 0 0 8px red; }
+    20%  { box-shadow: 0 0 8px yellow; }
+    40%  { box-shadow: 0 0 8px green; }
+    60%  { box-shadow: 0 0 8px cyan; }
+    80%  { box-shadow: 0 0 8px blue; }
+    100% { box-shadow: 0 0 8px red; }
+}
+        
 
         /* PICKS COLUMNS (Left & Right) */
         .picks-column {
