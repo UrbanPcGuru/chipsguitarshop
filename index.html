@@ -31,18 +31,20 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top: 35px;
-            margin-bottom: 20px;
+            margin-top: 25px;
+            margin-bottom: 10px;
         }
 
         .navbar {
-            padding: 20px 40px;
+            padding: 15px 40px;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.70);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(10px);
             display: flex;
             gap: 40px;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 100;
+            position: relative;
         }
 
         .navbar a {
@@ -56,18 +58,19 @@
            GRID ALIGNMENT
         ========================= */
         .main-grid, .second-row {
-            width: 95%;
-            max-width: 1600px;
+            width: 90%;
+            max-width: 1400px;
             margin: auto;
             display: grid;
-            /* Column 1 (Left Pick) | Column 2 (Logo/Spacer) | Column 3 (Right Pick) */
-            grid-template-columns: 1fr 600px 1fr; 
+            /* 300px side columns for perfect vertical pick alignment */
+            grid-template-columns: 300px 1fr 300px; 
+            gap: 20px;
             align-items: center;
             justify-items: center;
         }
 
         .second-row {
-            margin-top: -60px; /* Pulls the lower row up toward the logo */
+            margin-top: -80px; /* Pulls the lower picks up */
         }
 
         /* =========================
@@ -78,14 +81,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 300px;
+            min-height: 280px;
         }
 
         .image-box::before {
             content: '';
             position: absolute;
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(25px);
@@ -102,28 +105,18 @@
             83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 30px 5px magenta; }
         }
 
-        /* Independent timing for each pick */
-        .pick-1::before { animation-delay: 0s; }
-        .pick-2::before { animation-delay: -3s; }
-        .pick-3::before { animation-delay: -6s; }
-        .pick-4::before { animation-delay: -9s; }
-
         /* =========================
-           LOGO & SPACER
+           LOGO ADJUSTMENT
         ========================= */
         .logo-container {
-            margin-top: -180px; /* High lift into background wall space */
+            margin-top: -60px; /* Lowered from previous to clear the nav bar */
             z-index: 2;
         }
 
         .logo-container img {
-            width: 600px !important; 
+            width: 550px !important; 
             height: auto;
             display: block;
-        }
-
-        .row-spacer {
-            width: 600px; /* Exact match to logo width for column alignment */
         }
 
         /* =========================
@@ -133,7 +126,7 @@
             display: block;
             position: relative;
             z-index: 10;
-            width: 260px; 
+            width: 240px; 
             height: auto;
             border-radius: 20px;
             animation: floating 6s ease-in-out infinite;
@@ -141,19 +134,18 @@
 
         @keyframes floating {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+            50% { transform: translateY(-10px); }
         }
 
         /* =========================
            MOBILE
         ========================= */
-        @media(max-width: 1100px) {
+        @media(max-width: 1000px) {
             .main-grid, .second-row { 
                 grid-template-columns: 1fr; 
                 margin-top: 0;
             }
             .logo-container { margin-top: 0; }
-            .row-spacer { display: none; }
         }
     </style>
 </head>
@@ -171,7 +163,7 @@
 
     <!-- ROW 1 -->
     <section class="main-grid">
-        <div class="image-box pick-1">
+        <div class="image-box">
             <a href="index.html">
                 <img src="./images/guitarshop.webp" alt="Guitar Shop">
             </a>
@@ -181,31 +173,31 @@
             <img src="./images/hippychipslogo.webp" alt="Logo">
         </div>
 
-        <div class="image-box pick-2">
+        <div class="image-box">
             <a href="forums.html">
                 <img src="./images/guitarforums.webp" alt="Guitar Forums">
             </a>
         </div>
     </section>
 
-    <!-- ROW 2 (Aligned with Row 1) -->
+    <!-- ROW 2 -->
     <section class="second-row">
-        <div class="image-box pick-3">
+        <div class="image-box">
             <a href="services.html">
                 <img src="./images/guitar-repair.webp" alt="Guitar Repair">
             </a>
         </div>
 
-        <div class="row-spacer"></div>
+        <div><!-- Empty Middle Column for Logo Space --></div>
 
-        <div class="image-box pick-4">
+        <div class="image-box">
             <a href="priors.html">
                 <img src="./images/priorprojects.webp" alt="Prior Projects">
             </a>
         </div>
     </section>
 
-    <footer style="text-align: center; margin: 40px 0; color: #00ffee;">
+    <footer style="text-align: center; margin-top: 20px; padding-bottom: 20px; color: #00ffee; text-shadow: 0 0 5px #00ffee;">
         © Copyright www.hippychipsguitars.com
     </footer>
 
