@@ -18,7 +18,7 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: url('images/background.webp') center center/cover no-repeat fixed;
+            background: url('./images/background.webp') center center/cover no-repeat fixed;
             min-height: 100vh;
             overflow-x: hidden;
             color: white;
@@ -32,7 +32,7 @@
             display: flex;
             justify-content: center;
             margin-top: 35px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .navbar {
@@ -47,7 +47,6 @@
             align-items: center;
             gap: 40px;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.20), 0 0 40px rgba(255, 0, 255, 0.15);
         }
 
         .navbar a {
@@ -55,11 +54,7 @@
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: bold;
-            transition: 0.3s;
-            letter-spacing: 1px;
         }
-
-        .navbar a:hover { color: #00ffee; text-shadow: 0 0 10px #00ffee; }
 
         /* =========================
            GRID LAYOUTS
@@ -70,46 +65,42 @@
             margin: auto;
             display: grid;
             grid-template-columns: 1fr auto 1fr; 
-            gap: 30px;
+            gap: 20px;
             align-items: center;
             justify-items: center;
-            padding: 20px;
         }
 
         /* =========================
-           IMAGE BOX & INDEPENDENT SINGLE COLOR GLOW
+           IMAGE BOX & GLOW
         ========================= */
         .image-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            min-width: 320px; /* Ensures the box doesn't collapse */
-            min-height: 350px;
+            min-height: 320px;
+            min-width: 320px;
         }
 
-        /* The Glow (Pseudo-element) */
         .image-box::before {
             content: '';
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            z-index: 1; /* Glow stays in the back */
+            z-index: 1; 
             filter: blur(25px);
             opacity: 0.6;
             animation: cycleSingleColor 12s linear infinite;
-            pointer-events: none; /* Allows clicks to pass through to the image */
         }
 
         @keyframes cycleSingleColor {
-            0%, 100% { background: rgba(255, 0, 0, 0.8); box-shadow: 0 0 40px 10px rgba(255, 0, 0, 0.5); }
-            16% { background: rgba(255, 255, 0, 0.8); box-shadow: 0 0 40px 10px rgba(255, 255, 0, 0.5); }
-            33% { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 40px 10px rgba(0, 255, 0, 0.5); }
-            50% { background: rgba(0, 255, 255, 0.8); box-shadow: 0 0 40px 10px rgba(0, 255, 255, 0.5); }
-            66% { background: rgba(0, 0, 255, 0.8); box-shadow: 0 0 40px 10px rgba(0, 0, 255, 0.5); }
-            83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 40px 10px rgba(255, 0, 255, 0.5); }
+            0%, 100% { background: rgba(255, 0, 0, 0.8); box-shadow: 0 0 35px 5px red; }
+            16% { background: rgba(255, 255, 0, 0.8); box-shadow: 0 0 35px 5px yellow; }
+            33% { background: rgba(0, 255, 0, 0.8); box-shadow: 0 0 35px 5px green; }
+            50% { background: rgba(0, 255, 255, 0.8); box-shadow: 0 0 35px 5px cyan; }
+            66% { background: rgba(0, 0, 255, 0.8); box-shadow: 0 0 35px 5px blue; }
+            83% { background: rgba(255, 0, 255, 0.8); box-shadow: 0 0 35px 5px magenta; }
         }
 
         .pick-1::before { animation-delay: 0s; }
@@ -118,38 +109,44 @@
         .pick-4::before { animation-delay: -9s; }
 
         /* =========================
-           LOGO ADJUSTMENTS
+           LOGO RAISE & SIZE
         ========================= */
-        .logo-container { margin-top: -80px; }
-        .logo-container img { width: 700px !important; height: auto; }
-        .logo-container::before { width: 300px; height: 300px; animation-delay: -4s; }
+        .logo-container {
+            margin-top: -150px; /* Pulls logo significantly higher */
+            z-index: 2;
+        }
+
+        .logo-container img {
+            width: 600px !important; /* Slightly smaller to fit better */
+            height: auto;
+            display: block;
+        }
 
         /* =========================
-           THE IMAGES (PICK IMAGES)
+           PICK IMAGES VISIBILITY
         ========================= */
         .image-box img {
-            display: block; /* Ensures they aren't hidden by default */
+            display: block;
             position: relative;
-            z-index: 10; /* Forces images to the top layer */
-            width: 300px; 
+            z-index: 10; /* Ensures images stay on top */
+            width: 280px; 
             height: auto;
             border-radius: 20px;
-            animation: floatingPick 6s ease-in-out infinite;
-            transition: transform 0.4s ease;
+            animation: floating 6s ease-in-out infinite;
         }
 
-        .image-box:hover img { transform: scale(1.1); }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
 
-        @keyframes floatingPick {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
+        .row-spacer {
+            width: 600px; /* Matches the new logo width */
         }
 
         /* =========================
-           FOOTER & RESPONSIVE
+           MOBILE
         ========================= */
-        footer { margin-top: 60px; text-align: center; color: #00ffee; text-shadow: 0 0 10px #00ffee; }
-
         @media(max-width: 1000px) {
             .main-grid, .second-row { grid-template-columns: 1fr; }
             .logo-container { margin-top: 0; }
@@ -171,27 +168,41 @@
 
     <section class="main-grid">
         <div class="image-box pick-1">
-            <a href="index.html"><img src="images/guitarshop.webp" alt="Guitar Shop"></a>
+            <a href="index.html">
+                <img src="./images/guitarshop.webp" alt="Guitar Shop">
+            </a>
         </div>
+
         <div class="image-box logo-container">
-            <img src="images/hippychipslogo.webp" alt="Logo">
+            <img src="./images/hippychipslogo.webp" alt="Logo">
         </div>
+
         <div class="image-box pick-2">
-            <a href="forums.html"><img src="images/guitarforums.webp" alt="Forums"></a>
+            <a href="forums.html">
+                <img src="./images/guitarforums.webp" alt="Guitar Forums">
+            </a>
         </div>
     </section>
 
     <section class="second-row">
         <div class="image-box pick-3">
-            <a href="services.html"><img src="images/guitar-repair.webp" alt="Repair"></a>
+            <a href="services.html">
+                <img src="./images/guitar-repair.webp" alt="Guitar Repair">
+            </a>
         </div>
-        <div class="row-spacer" style="width: 700px;"></div>
+
+        <div class="row-spacer"></div>
+
         <div class="image-box pick-4">
-            <a href="priors.html"><img src="images/priorprojects.webp" alt="Priors"></a>
+            <a href="priors.html">
+                <img src="./images/priorprojects.webp" alt="Prior Projects">
+            </a>
         </div>
     </section>
 
-    <footer>© Copyright www.hippychipsguitars.com</footer>
+    <footer style="text-align: center; margin: 40px 0; color: #00ffee;">
+        © Copyright www.hippychipsguitars.com
+    </footer>
 
 </body>
 </html>
