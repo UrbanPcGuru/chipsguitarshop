@@ -65,17 +65,18 @@
         .main-container {
             flex: 1;
             display: grid;
-            grid-template-columns: 320px 1fr 320px;
+            /* Narrowed side columns from 320px to 280px to bring them inward */
+            grid-template-columns: 280px 1fr 280px;
             align-items: center; 
             justify-items: center;
             width: 100%;
-            max-width: 1800px;
+            /* Reduced max-width to pull everything toward the center */
+            max-width: 1500px;
             margin: 0 auto;
-            padding: 40px 50px 0 50px; 
+            padding: 40px 20px 0 20px; 
         }
 
-        /* CENTER LOGO POSITIONING 
-           Lifted to -240px to sit closer to the Nav Bar */
+        /* CENTER LOGO POSITIONING */
         .logo-column {
             display: flex;
             justify-content: center;
@@ -114,7 +115,8 @@
         .picks-column {
             display: flex;
             flex-direction: column;
-            gap: 120px; 
+            /* Increased gap from 120px to 150px for more vertical space */
+            gap: 150px; 
             justify-content: center;
         }
 
@@ -130,7 +132,6 @@
             transform: scale(1.1);
         }
 
-        /* ENLARGED PICK GLOWS */
         .image-box::after {
             content: '';
             position: absolute;
@@ -155,7 +156,7 @@
             100% { background: red; box-shadow: 0 0 20px red; }
         }
 
-        /* PICK IMAGES - Increased by 10px to 300px */
+        /* PICK IMAGES - Kept at 300px */
         .image-box img {
             position: relative;
             z-index: 10;
