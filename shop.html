@@ -16,8 +16,8 @@
 
         body {
             font-family: Arial, sans-serif;
-            /* background-position changed to 'center 20%' to move it down */
-            background: #000 url('images/shopbackground.webp') no-repeat center 20% fixed;
+            /* background-position pushed down further to 40% to prevent top cutoff */
+            background: #000 url('images/shopbackground.webp') no-repeat center 40% fixed;
             background-size: cover;
             min-height: 100vh;
             color: white;
@@ -28,22 +28,48 @@
         }
 
         /* =========================
-           HEADER & SEARCH
+           PERMANENT NAVBAR (from index)
+        ========================= */
+        nav {
+            width: 100%;
+            background-color: #000;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 2000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #00ffee;
+        }
+
+        /* =========================
+           LOGO & SEARCH AREA
         ========================= */
         header {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start; /* Aligns logo and search to the top of the header area */
             padding: 20px 40px;
             z-index: 1000;
         }
 
-        .logo-small img {
-            width: 120px; 
+        /* Logo made significantly bigger (300px) */
+        .logo-large img {
+            width: 300px; 
             height: auto;
         }
 
+        /* Search area placed below the nav bar level */
         .search-area {
             display: flex;
             flex-direction: column;
@@ -54,6 +80,7 @@
             border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 10px; /* Slight gap from the nav bar */
         }
 
         .category-row {
@@ -68,13 +95,11 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .cat-item input[type="radio"] {
             accent-color: #00ffee;
-            width: 16px;
-            height: 16px;
         }
 
         .search-bar {
@@ -108,7 +133,7 @@
             position: relative;
             width: 1040px; 
             height: 600px;
-            margin-top: 20px;
+            margin-top: -40px; /* Pulls the catalog up slightly to accommodate bigger logo/search */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -173,7 +198,7 @@
         .next-btn { right: 15px; }
 
         /* =========================
-           FOOTER - Smaller & Black
+           FOOTER
         ========================= */
         footer {
             margin-top: auto;
@@ -186,8 +211,17 @@
 </head>
 <body>
 
+    <!-- Permanent NavBar from index -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="#repairs">Repairs</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <header>
-        <div class="logo-small">
+        <div class="logo-large">
             <a href="index.html">
                 <img src="images/hippychipslogo.webp" alt="Logo">
             </a>
