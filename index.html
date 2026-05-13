@@ -71,17 +71,14 @@
             width: 100%;
             max-width: 1600px;
             margin: 0 auto;
-            /* Added padding to push the layout down from the nav */
             padding: 40px 50px 0 50px; 
         }
 
-        /* CENTER LOGO POSITIONING 
-           Slightly lowered to prevent Nav bar overlap */
+        /* CENTER LOGO POSITIONING */
         .logo-column {
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Adjusted from -235px to -200px to sit clear of the Nav */
             margin-top: -200px; 
             z-index: 500;
         }
@@ -93,7 +90,6 @@
             align-items: center;
         }
 
-        /* LOGO & DYNAMIC GLOW */
         .logo-container img {
             position: relative;
             z-index: 10;
@@ -133,11 +129,12 @@
             transform: scale(1.1);
         }
 
+        /* PICK GLOWS - Resized to 160px (approx 15% increase) */
         .image-box::after {
             content: '';
             position: absolute;
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(25px);
@@ -157,10 +154,11 @@
             100% { background: red; box-shadow: 0 0 20px red; }
         }
 
+        /* PICK IMAGES - Resized to 253px (15% bigger than 220px) */
         .image-box img {
             position: relative;
             z-index: 10;
-            width: 220px; 
+            width: 253px; 
             height: auto;
             border-radius: 15px;
             animation: floating 6s ease-in-out infinite;
