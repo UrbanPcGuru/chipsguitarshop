@@ -55,8 +55,8 @@
         }
 
         /* =========================
-           FIXED COLUMN GRID 
-           Prevents the "Prior Projects" drift
+           FOUR CORNERS GRID SYSTEM
+           Forces picks into fixed columns 1 and 5
         ========================= */
         .main-container {
             flex: 1;
@@ -64,41 +64,43 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 20px;
+            padding: 0 40px;
         }
 
         .content-grid {
             display: grid;
-            grid-template-columns: 280px 650px 280px;
+            /* 5 Columns: Pick | Space | Logo | Space | Pick */
+            grid-template-columns: 240px 1fr 630px 1fr 240px;
+            grid-template-rows: auto auto;
             align-items: center;
             justify-items: center;
-            column-gap: 20px;
-            row-gap: 30px;
+            width: 100%;
+            max-width: 1600px;
         }
 
         /* =========================
-           LOGO POSITIONING & SWEET SPOT GLOW
-           Raised to clear the workbench and fit the background sphere
+           LOGO POSITIONING & EXTENDED GLOW
         ========================= */
         .logo-container {
-            grid-row: span 2;
+            grid-column: 3;
+            grid-row: 1 / span 2;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: -180px; /* Elevated position below Nav Bar */
-            padding-top: 0;
+            margin-top: -180px; /* Centered in sphere below Nav */
         }
 
         .logo-container::before {
             content: '';
             position: absolute;
-            width: 300px; /* Restored size for visibility */
-            height: 300px; 
+            /* Increased size to extend beyond logo diameter */
+            width: 650px; 
+            height: 650px; 
             border-radius: 50%;
             z-index: 1;
-            filter: blur(40px); /* Softer glow range */
-            opacity: 0.6;
+            filter: blur(70px); 
+            opacity: 0.45;
             animation: cycleColors 15s linear infinite;
             animation-delay: -5s; 
         }
@@ -113,23 +115,26 @@
         }
 
         /* =========================
-           PICK IMAGES & INDEPENDENT GLOWS
-           Staggered colors so no two are the same
+           PICK PLACEMENT (4 CORNERS)
         ========================= */
+        .pick-left-top     { grid-column: 1; grid-row: 1; }
+        .pick-left-bottom  { grid-column: 1; grid-row: 2; }
+        .pick-right-top    { grid-column: 5; grid-row: 1; }
+        .pick-right-bottom { grid-column: 5; grid-row: 2; }
+
         .image-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 250px;
-            width: 100%; 
+            min-height: 280px;
         }
 
         .image-box::before {
             content: '';
             position: absolute;
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             z-index: 1; 
             filter: blur(25px);
@@ -137,7 +142,7 @@
             animation: cycleColors 12s linear infinite;
         }
 
-        /* Unique timing offsets for random color feel */
+        /* Staggered offsets for different colors at all times */
         .pick-1::before { animation-delay: 0s; }
         .pick-2::before { animation-delay: -3s; }
         .pick-3::before { animation-delay: -6s; }
@@ -156,7 +161,7 @@
         .image-box img {
             position: relative;
             z-index: 10;
-            width: 230px; 
+            width: 220px; 
             height: auto;
             border-radius: 15px;
             animation: floating 6s ease-in-out infinite;
@@ -182,11 +187,16 @@
         @media(max-width: 1250px) {
             .content-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             .logo-container {
-                grid-row: auto;
+                grid-column: 1;
+                grid-row: 1;
                 margin-top: 20px;
-                order: -1;
+            }
+            .pick-left-top, .pick-left-bottom, .pick-right-top, .pick-right-bottom {
+                grid-column: 1;
+                grid-row: auto;
             }
         }
     </style>
@@ -206,23 +216,26 @@
     <div class="main-container">
         <div class="content-grid">
             
-            <div class="image-box pick-1">
+            <!-- LEFT SIDE -->
+            <div class="image-box pick-1 pick-left-top">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
 
+            <div class="image-box pick-3 pick-left-bottom">
+                <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
+            </div>
+
+            <!-- CENTER -->
             <div class="logo-container">
                 <img src="./images/hippychipslogo.webp" alt="Logo">
             </div>
 
-            <div class="image-box pick-2">
+            <!-- RIGHT SIDE -->
+            <div class="image-box pick-2 pick-right-top">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
 
-            <div class="image-box pick-3">
-                <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
-            </div>
-
-            <div class="image-box pick-4">
+            <div class="image-box pick-4 pick-right-bottom">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
             </div>
 
