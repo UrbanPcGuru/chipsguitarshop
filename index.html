@@ -66,14 +66,14 @@
             padding: 20px 50px;
         }
 
-        /* ROW 1: LOGO ONLY */
+        /* ROW 1: LOGO POSITIONING */
         .logo-row {
             width: 100%;
             display: flex;
             justify-content: center;
-            /* Adjust this to hit the "Sweet Spot" below the Nav bar */
-            margin-top: -60px; 
-            margin-bottom: 20px;
+            /* Lowered slightly from -180px for better centering */
+            margin-top: -165px; 
+            margin-bottom: 25px;
         }
 
         .logo-container {
@@ -83,16 +83,16 @@
             align-items: center;
         }
 
-        /* Lowered Logo Glow */
+        /* ULTRA-TIGHT GLOW: 4px past 630px border */
         .logo-container::before {
             content: '';
             position: absolute;
-            width: 400px; 
-            height: 400px; 
+            width: 638px; /* 630px + 4px padding on each side */
+            height: 638px; 
             border-radius: 50%;
             z-index: 1;
-            filter: blur(45px); 
-            opacity: 0.5;
+            filter: blur(8px); /* Sharper edge for the tighter glow */
+            opacity: 0.65;
             animation: cycleColors 15s linear infinite;
             animation-delay: -5s; 
         }
@@ -101,7 +101,7 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 600px;
+            max-width: 630px; 
             height: auto;
             display: block;
         }
@@ -109,12 +109,11 @@
         /* ROWS 2 & 3: 3-COLUMN PICKS */
         .picks-grid {
             display: grid;
-            /* Column 1: Pick | Column 2: Empty Space | Column 3: Pick */
             grid-template-columns: 280px 1fr 280px;
             grid-template-rows: auto auto;
             width: 100%;
             max-width: 1400px;
-            row-gap: 40px; 
+            row-gap: 50px; 
             align-items: center;
             justify-items: center;
         }
@@ -142,7 +141,6 @@
             animation: cycleColors 12s linear infinite;
         }
 
-        /* Unique Color Delays */
         .pick-1::before { animation-delay: 0s; }
         .pick-2::before { animation-delay: -3s; }
         .pick-3::before { animation-delay: -6s; }
@@ -184,10 +182,12 @@
             font-size: 1.1rem;
         }
 
-        /* MOBILE FIX */
         @media(max-width: 900px) {
             .picks-grid {
                 grid-template-columns: 1fr;
+            }
+            .logo-row {
+                margin-top: 20px;
             }
         }
     </style>
@@ -216,28 +216,22 @@
         <!-- ROW 2 & 3 -->
         <div class="picks-grid">
             
-            <!-- ROW 2, COL 1 -->
             <div class="image-box pick-1">
                 <a href="index.html"><img src="./images/guitarshop.webp" alt="Shop"></a>
             </div>
 
-            <!-- ROW 2, COL 2 (Empty Space) -->
-            <div></div>
+            <div></div> <!-- Spacer -->
 
-            <!-- ROW 2, COL 3 -->
             <div class="image-box pick-2">
                 <a href="forums.html"><img src="./images/guitarforums.webp" alt="Forums"></a>
             </div>
 
-            <!-- ROW 3, COL 1 -->
             <div class="image-box pick-3">
                 <a href="services.html"><img src="./images/guitar-repair.webp" alt="Repair"></a>
             </div>
 
-            <!-- ROW 3, COL 2 (Empty Space) -->
-            <div></div>
+            <div></div> <!-- Spacer -->
 
-            <!-- ROW 3, COL 3 -->
             <div class="image-box pick-4">
                 <a href="priors.html"><img src="./images/priorprojects.webp" alt="Priors"></a>
             </div>
