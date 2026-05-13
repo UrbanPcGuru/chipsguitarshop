@@ -116,34 +116,35 @@
         }
 
         .logo-large img {
-            width: 200px; 
+            width: 180px; 
             height: auto;
         }
 
         /* =========================
-           SLIDER & WINDOW 
+           RESIZED SLIDER
         ========================= */
         .catalog-container {
             position: relative;
             flex-grow: 1; 
-            width: 680px; /* Matched to smaller slider scale */
-            height: 380px;
+            width: 650px; 
+            height: 360px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 75px; 
+            margin-top: 70px; 
         }
 
-        /* Fixed the black window size and position */
+        /* Fine-tuned to fit perfectly behind slider.webp */
         .main-view-window {
             position: absolute;
-            top: 48px;   /* Pushed down to clear the top decorative frame */
-            width: 480px; /* Narrowed to fit inside the "brass" frame */
-            height: 215px; /* Shortened to fit height-wise */
+            /* Adjust top and width/height to center inside the frame graphic */
+            top: 45px;   
+            width: 535px; 
+            height: 235px; 
             z-index: 50;
             overflow: hidden;
             background: #000;
-            border-radius: 5px;
+            border-radius: 10px; /* Matched to the rounded inner frame */
         }
 
         .catalog-frame {
@@ -164,18 +165,16 @@
         footer {
             width: 100%;
             text-align: center;
-            padding: 12px 0;
-            /* White 45% Transparent Background */
-            background: rgba(255, 255, 255, 0.45);
-            /* Soft glass effect */
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.45); 
             backdrop-filter: blur(5px);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: #000; 
-            font-size: 0.85rem; 
+            font-size: 0.9rem; 
             font-weight: bold;
             letter-spacing: 1px;
             flex-shrink: 0;
             z-index: 1000;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
