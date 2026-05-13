@@ -77,21 +77,43 @@
         }
 
         /* =========================
-           LOGO POSITIONING (Raised)
-        ========================= */
-        .logo-container {
-            grid-row: span 2; 
-            /* Reduced margin to raise the logo into the background sphere */
-            margin-top: 20px; 
-        }
+   LOGO POSITIONING & GLOW
+========================= */
+.logo-container {
+    grid-row: span 2;
+    position: relative; /* Needed for the background glow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adjust this to move it closer to the Nav bar */
+    margin-top: -80px; 
+    padding-top: 0;
+}
 
-        .logo-container img {
-            width: 100%;
-            max-width: 630px; 
-            height: auto;
-            display: block;
-        }
+/* Background Glow for the Logo */
+.logo-container::before {
+    content: '';
+    position: absolute;
+    /* Increase size to fit behind the large logo */
+    width: 450px; 
+    height: 450px;
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(60px);
+    opacity: 0.5;
+    /* Using the same cycleColors keyframes but with a different timing */
+    animation: cycleColors 15s linear infinite;
+    animation-delay: -5s; /* Staggers the start color from the picks */
+}
 
+.logo-container img {
+    position: relative;
+    z-index: 10; /* Keeps the logo above the glow */
+    width: 100%;
+    max-width: 630px;
+    height: auto;
+    display: block;
+}
         /* =========================
            UNIQUE GLOW COLOR OFFSET
         ========================= */
