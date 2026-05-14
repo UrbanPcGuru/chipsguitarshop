@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('background.webp') no-repeat center center fixed;
+    /* Updated to use the clean guitar background from your images folder */
+    background: url('images/guitarbackground.png') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
     display: flex;
@@ -21,12 +22,13 @@ body {
 .placard-frame {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
-    border: 2px solid #d4af37; /* Gold trim to match the logo vibe */
+    border: 2px solid #d4af37; /* Gold trim for that Hippy Chips vibe */
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* This class styles the image element inside the HTML, not the source path */
 .placard-img {
     width: 100%;
     height: auto;
